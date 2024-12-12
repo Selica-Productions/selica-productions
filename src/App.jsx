@@ -1,5 +1,5 @@
 import Navbar from "./components/ui/navbar/Navbar";
-import FilmList from "./components/film-list/film-list";
+import { FilmList, FilmItem } from "./components/films"
 
 function App() {
   return (

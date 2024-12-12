@@ -6,8 +6,9 @@ const API_URL = "https://api.themoviedb.org/3/movie/popular";
 
 const token = import.meta.env.VITE_MOVIE_TOKEN;
 
-function FilmList() {
+function FilmList({ filter = {} }) {
   const [films, setFilms] = useState([]);
+  // const [filteredFilms, setFilteredFilms] = useState([]);
 
   const getAllFilms = () => {
     axios
@@ -21,7 +22,8 @@ function FilmList() {
   useEffect(() => {
     getAllFilms();
   }, []);
-  console.log(films);
+
+  
 
   return (
     <div>
