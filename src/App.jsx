@@ -1,7 +1,5 @@
-import Navbar from "./components/ui/navbar/Navbar";
-import Footer from "./components/pages/footer";
-import FilmList from "./components/films/films-list/films-list";
-import FilmItem from "./components/films/film-item/film-item";
+import { Navbar, Footer } from "./components/ui/index"
+import {FilmItem, YearFilter }from "./components/films/index";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -9,7 +7,11 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<FilmList />} />
+        <Route path="/" element={
+          // <FilmList />
+           <YearFilter />
+            
+          } />
         <Route path="/film/:id" element={<FilmItem />} />
       </Routes>
       <Footer />

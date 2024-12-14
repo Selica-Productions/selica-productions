@@ -1,39 +1,32 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { DropdownFilter } from "../../ui";
 
-const API_URL = "https://api.themoviedb.org/3/movie/popular";
+const API_URL = "https://api.themoviedb.org/3/discover/movie?primary_release_year=";
 const token = import.meta.env.VITE_MOVIE_TOKEN;
 
-function FilmList(/*{ filter = {} }*/) {
+function YearFilter({ year }) {
   const [films, setFilms] = useState([]);
-  // const [filteredFilms, setFilteredFilms] = useState([]);
 
   const getAllFilms = () => {
     axios
-      .get(`${API_URL}`, {
+      .get(`${API_URL}${year}&sort_by=popularity.desc`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setFilms(response.data.results))
       .catch((error) => console.log(error));
   };
 
+  //release_date --> fecha de tipo string YYYY-MM-DD
+
   useEffect(() => {
     getAllFilms();
   }, []);
 
-  // useEffect(() => {
-  //   if (films.length > 0) {
-  //     const filmsTitleFilter = films.filter((film) =>
-  //       filter.title === undefined ||
-  //       film.title.toLocaleLowerCase().includes(filter.title.toLocaleLowerCase())
-  //     );
-  //     setFilteredFilms(filmsTitleFilter);
-  //   }
-  // }, [films, filter]);
-
   return (
     <div className="container mt-5">
+      <DropdownFilter years={[2020, 2021, 2022, 2023]}/>
       <div className="row">
         {films.map((film) => (
           <div className="col-md-3 mb-4" key={film.id}>
@@ -62,4 +55,4 @@ function FilmList(/*{ filter = {} }*/) {
   );
 }
 
-export default FilmList;
+export default YearFilter;

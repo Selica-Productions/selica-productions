@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PageLayout } from "../layouts";
 import SearchBar from "../searchbar/searchbar";
 
-function Home() {
+function HomePage() {
     const [ searchFilter, setSearchFilter ] = useState({})
 
     const onSearchFilter = (searchFilter) => setSearchFilter(searchFilter);
@@ -13,4 +13,4 @@ function Home() {
   )
 }
 
-export default Home;
+export default HomePage;
