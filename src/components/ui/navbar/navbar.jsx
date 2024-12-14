@@ -1,5 +1,5 @@
 import Searchbar from "../../searchbar/searchbar";
-import logo from "../../../../src/assets/images/rt-logo.png";
+import logo from "../../../../src/assets/images/logo.png";
 
 function Navbar() {
   const style = {
