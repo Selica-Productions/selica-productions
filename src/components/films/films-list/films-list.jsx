@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const API_URL = "https://api.themoviedb.org/3/movie/popular";
-
 const token = import.meta.env.VITE_MOVIE_TOKEN;
 
 function FilmList({ filter = {} }) {
@@ -23,18 +22,32 @@ function FilmList({ filter = {} }) {
     getAllFilms();
   }, []);
 
-  
-
   return (
-    <div>
-      {films.map((film) => {
-        return (
-          <div key={film.id}>
-            <h3>{film.id}</h3>
-            <h3>{film.title}</h3>
+    <div className="container mt-5">
+      <div className="row">
+        {films.map((film) => (
+          <div className="col-md-3 mb-4" key={film.id}>
+            <div className="card h-100">
+              <img
+                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                className="card-img-top"
+                alt={film.title}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{film.title}</h5>
+                <p className="card-text">
+                  {film.overview.length > 100
+                    ? film.overview.substring(0, 100) + "..."
+                    : film.overview}
+                </p>
+                <Link to={`/film/${film.id}`} className="btn btn-primary">
+                  Read More
+                </Link>
+              </div>
+            </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 }
