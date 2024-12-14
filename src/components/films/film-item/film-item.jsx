@@ -43,26 +43,33 @@ function FilmItem() {
             color: "white",
             padding: "20px",
             borderRadius: "8px",
+            fontSize: "20px",
           }}
         >
-          <h2 className="mb-3">{film.title}</h2>
+          <h1 className="mb-4">{film.title}</h1>
           <p>
+            <i className="bi bi-calendar-event me-2 m-2"></i>
             <strong>Year:</strong> {new Date(film.release_date).getFullYear()}
           </p>
           <p>
+            <i className="bi bi-translate me-2 m-2"></i>
             <strong>Language:</strong> {film.original_language.toUpperCase()}
           </p>
           <p>
-            <strong>Overview:</strong> {film.overview}
+            <i className="bi bi-film me-2 m-2"></i>
+            <strong>Overview:</strong>
+            <p className="m-3">{film.overview}</p>
           </p>
           <p>
+            <i className="bi bi-tags me-2 m-2"></i>
             <strong>Genres:</strong>{" "}
             {film.genres.map((genre) => genre.name).join(", ")}
           </p>
           <p>
+            <i className="bi bi-clock me-2 m-2"></i>
             <strong>Runtime:</strong> {film.runtime} minutes
           </p>
-          <button className="btn btn-primary mt-3">Add to Watchlist</button>
+          <button className="btn btn-primary mt-5">Add to Watchlist</button>
         </div>
       </div>
     </div>
