@@ -1,25 +1,23 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
-
-const API_URL = "https://api.themoviedb.org/3/movie";
-const token = import.meta.env.VITE_MOVIE_TOKEN;
+import { getFilmDetails } from "../../../service/moviesService";
 
 function FilmItem() {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
+  const [error, setError] = useState(null);
 
-  const getFilmDetails = () => {
-    axios
-      .get(`${API_URL}/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => setFilm(response.data))
-      .catch((error) => console.log(error));
+  const getFilm = async() => {
+    try{
+      const filmDetails = await getFilmDetails(id);
+      setFilm(filmDetails);
+    } catch(e){
+      setError(e.message);
+    }
   };
 
   useEffect(() => {
-    getFilmDetails();
+    getFilm();
   }, [id]);
 
   if (!film) {
@@ -28,6 +26,7 @@ function FilmItem() {
 
   return (
     <div className="container mt-5">
+      {error && <p>{error}</p>}
       <div className="row">
         <div className="col-md-4">
           <img

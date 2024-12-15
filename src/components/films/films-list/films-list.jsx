@@ -4,7 +4,7 @@ import { getPopularMovies } from "../../../service/moviesService";
 
 function FilmsList(/*{ filter = {} }*/) {
   const [films, setFilms] = useState([]);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   // const [filteredFilms, setFilteredFilms] = useState([]);
 
   const getFilms = async() => {
@@ -12,7 +12,6 @@ function FilmsList(/*{ filter = {} }*/) {
       const popularMovies = await getPopularMovies();
       setFilms(popularMovies);
     } catch(e){
-      console.error(error);
       setError(e.message)
     }
   }
@@ -33,6 +32,7 @@ function FilmsList(/*{ filter = {} }*/) {
 
   return (
     <div className="container mt-5">
+    {error && <p>{error}</p>}
       <div className="row">
         {films.map((film) => (
           <div className="col-md-3 mb-4" key={film.id}>
