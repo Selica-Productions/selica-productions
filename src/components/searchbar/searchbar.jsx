@@ -4,14 +4,16 @@ function SearchBar({ filter, onSearchFilter }) {
     onSearchFilter({...filter, [name]: value })
   }
   return (
-    <input
-      id="search"
-      type="text"
-      placeholder="Search for the film title..."
-      className="form-control mb-3"
-      name="title"
-      onChange={onFilter}
-    />
+    <form className="d-flex gap-1" role="search">
+      <input
+        id="search"
+        type="text"
+        placeholder="Search for the film title..."
+        className="form-control me-2"
+        name="title"
+        onChange={onFilter}/>
+      <button className="btn btn-light text-info" type="submit">Search</button>
+    </form>
   );
 }
 

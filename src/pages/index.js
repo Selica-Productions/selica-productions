@@ -1,0 +1,5 @@
+export { default as HomePage } from "./home"
+export { default as MoviesPage } from "./movies"
+export { default as MapPage } from "./map"
+export { default as MoodPage } from "./mood"
+export { default as WatchListPage } from "./watchlist"

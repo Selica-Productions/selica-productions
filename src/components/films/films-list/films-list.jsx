@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const API_URL = "https://api.themoviedb.org/3/movie/popular";
 const token = import.meta.env.VITE_MOVIE_TOKEN;
 
-function FilmList(/*{ filter = {} }*/) {
+function FilmsList(/*{ filter = {} }*/) {
   const [films, setFilms] = useState([]);
   // const [filteredFilms, setFilteredFilms] = useState([]);
 
@@ -62,4 +62,4 @@ function FilmList(/*{ filter = {} }*/) {
   );
 }
 
-export default FilmList;
+export default FilmsList;
