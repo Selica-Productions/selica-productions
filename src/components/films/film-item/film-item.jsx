@@ -2,18 +2,25 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getFilmDetails } from "../../../service/moviesService";
 
-function FilmItem() {
+function FilmItem({ addToWatchlist }) {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const getFilm = async() => {
-    try{
+  const getFilm = async () => {
+    try {
       const filmDetails = await getFilmDetails(id);
       setFilm(filmDetails);
-    } catch(e){
+    } catch (e) {
       setError(e.message);
     }
+  };
+
+  const handleAddToWatchlist = (film) => {
+    addToWatchlist(film);
+    setSuccessMessage("The movie was added successfully to your watchlist");
+    setTimeout(() => setSuccessMessage(""), 3000);
   };
 
   useEffect(() => {
@@ -21,11 +28,11 @@ function FilmItem() {
   }, [id]);
 
   if (!film) {
-    return <p>{error}</p>
+    return <p>{error}</p>;
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-5">
       <div className="row">
         <div className="col-md-4">
           <img
@@ -67,7 +74,15 @@ function FilmItem() {
             <i className="bi bi-clock me-2 m-2"></i>
             <strong>Runtime:</strong> {film.runtime} minutes
           </p>
-          <button className="btn btn-primary mt-5">Add to Watchlist</button>
+          <button
+            onClick={() => handleAddToWatchlist(film)}
+            className="btn btn-primary m-4"
+          >
+            Add to Watchlist
+          </button>
+          {successMessage && (
+            <p className="mt-3 text-success">{successMessage}</p>
+          )}
         </div>
       </div>
     </div>
