@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getPopularMovies, loadFilmPages } from "../../../service/moviesService";
 import { maxPages } from "../../../utils/constants"
 
-function FilmsList(/*{ filter = {} }*/) {
+function FilmsList({ search }) {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1); //Current page. Each page has 20 films.
@@ -35,18 +35,22 @@ function FilmsList(/*{ filter = {} }*/) {
     }
   };
 
-  useEffect(() => {
-    getPopulars();
-  }, []);
-
   const handleLoadMore = () => {
     if (page <= maxPages && !loading) {
       getMoreFilms(page);
     }
   }
 
-  
+  //--Searched Films--
+  const searchedFilms = films.filter( 
+      film => !search || film.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()) 
+  )
 
+  useEffect(() => {
+    getPopulars();
+  }, []);
+
+  
   if ( films.length === 0 ) {
     return <p>{error}</p>
   }
@@ -54,7 +58,8 @@ function FilmsList(/*{ filter = {} }*/) {
   return (
     <div className="container mt-5">
       <div className="row">
-        {films.map((film) => (
+        {searchedFilms.length > 0 ? ( 
+          searchedFilms.map((film) => (
           <div className="col-md-3 mb-4" key={film.id}>
             <div className="card h-100">
               <img
@@ -75,7 +80,9 @@ function FilmsList(/*{ filter = {} }*/) {
               </div>
             </div>
           </div>
-        ))}
+        ))
+        ) : (<p> No films find </p>)
+        }
       </div>
       <div className="d-flex justify-content-center ">
         <button type="button" className="btn btn-secondary" onClick={handleLoadMore}>Load More</button>

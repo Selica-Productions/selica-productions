@@ -12,6 +12,11 @@ import {
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
+  const [search, setSearch] = useState("");
+
+  const onSearch = (event) => {
+    setSearch(event.target.value);
+  }
 
   const addToWatchlist = (film) => {
     setWatchlist((prevList) => {
@@ -29,10 +34,10 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar search={search} onSearch={onSearch} />
         <main>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage search={search} />} />
             <Route path="/movies" element={<MoviesPage />} />
             <Route path="/mood" element={<MoodPage />} />
             <Route path="/map" element={<MapPage />} />

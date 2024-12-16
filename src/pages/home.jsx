@@ -1,15 +1,10 @@
 import { PageLayout } from "../components/layouts";
 import { FilmsList } from "../components/films/index"
 
-function HomePage() {
-    // const [ searchFilter, setSearchFilter ] = useState({})
-
-    // const onSearchFilter = (searchFilter) => setSearchFilter(searchFilter);
+function HomePage({ search }) {
   return (
     <PageLayout>
-        
-        <FilmsList/>
-        {/*<SearchBar filter = {searchFilter} onSearchFilter = {onSearchFilter} />*/}
+        <FilmsList search= { search } />
     </PageLayout>
   )
 }
