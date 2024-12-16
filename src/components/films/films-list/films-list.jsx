@@ -1,38 +1,58 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getPopularMovies } from "../../../service/moviesService";
+import { getPopularMovies, loadFilmPages } from "../../../service/moviesService";
+import { maxPages } from "../../../utils/constants"
 
 function FilmsList(/*{ filter = {} }*/) {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
-  // const [filteredFilms, setFilteredFilms] = useState([]);
+  const [page, setPage] = useState(1); //Current page. Each page has 20 films.
+  const [loading, setLoading] = useState(false);
 
-  const getFilms = async() => {
-    try{
-      const popularMovies = await getPopularMovies();
-      setFilms(popularMovies);
+  //--Popular films (20 films) -> execute only once--
+  const getPopulars = async() => {
+    try {
+      const popularFilms = await getPopularMovies();
+      setFilms(popularFilms);
+      setPage(page + 1);
     } catch(e){
-      setError(e.message)
+       setError(e.message);
     }
   }
 
+  //--Handle more page (20 films per page)--
+  const getMoreFilms = async (page) => {
+    if (loading) return;
+    try {
+      setLoading(true);
+      const moreFilms = await loadFilmPages(page);
+      setFilms([...films, ...moreFilms]);
+      setPage(page + 1);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    getFilms();
+    getPopulars();
   }, []);
 
-  // useEffect(() => {
-  //   if (films.length > 0) {
-  //     const filmsTitleFilter = films.filter((film) =>
-  //       filter.title === undefined ||
-  //       film.title.toLocaleLowerCase().includes(filter.title.toLocaleLowerCase())
-  //     );
-  //     setFilteredFilms(filmsTitleFilter);
-  //   }
-  // }, [films, filter]);
+  const handleLoadMore = () => {
+    if (page <= maxPages && !loading) {
+      getMoreFilms(page);
+    }
+  }
+
+  
+
+  if ( films.length === 0 ) {
+    return <p>{error}</p>
+  }
 
   return (
     <div className="container mt-5">
-    {error && <p>{error}</p>}
       <div className="row">
         {films.map((film) => (
           <div className="col-md-3 mb-4" key={film.id}>
@@ -56,6 +76,9 @@ function FilmsList(/*{ filter = {} }*/) {
             </div>
           </div>
         ))}
+      </div>
+      <div className="d-flex justify-content-center ">
+        <button type="button" className="btn btn-secondary" onClick={handleLoadMore}>Load More</button>
       </div>
     </div>
   );

@@ -21,12 +21,11 @@ function FilmItem() {
   }, [id]);
 
   if (!film) {
-    return <div>Loading...</div>;
+    return <p>{error}</p>
   }
 
   return (
     <div className="container mt-5">
-      {error && <p>{error}</p>}
       <div className="row">
         <div className="col-md-4">
           <img

@@ -1,0 +1,1 @@
+export const maxPages = 500;
