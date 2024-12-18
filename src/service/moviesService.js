@@ -2,9 +2,13 @@ import api from "./api";
 
 //--API CALLS--
 //--Get Popular Movies--
-export const getPopularMovies = async() => {
+export const getPopularMovies = async( filters = {} ) => {
     try {
-        const response = await api.get("/movie/popular");
+        let url = "/movie/popular?";
+        if (filters.year) url = `/discover/movie?primary_release_year=${filters.year}`;
+        // if (filters.genre) url += `/discover/movie?with_genres=${filters.genre.name}`;
+
+        const response = await api.get(url);
         return response.data.results;
     } catch(error) {
         console.log(error)

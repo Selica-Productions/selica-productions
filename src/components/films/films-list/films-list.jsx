@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getPopularMovies, loadFilmPages } from "../../../service/moviesService";
 import { maxPages } from "../../../utils/constants"
 
-function FilmsList({ search }) {
+function FilmsList({ search, year, genre }) {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1); //Current page. Each page has 20 films.
@@ -12,7 +12,7 @@ function FilmsList({ search }) {
   //--Popular films (20 films) -> execute only once--
   const getPopulars = async() => {
     try {
-      const popularFilms = await getPopularMovies();
+      const popularFilms = await getPopularMovies({ year, genre });
       setFilms(popularFilms);
       setPage(page + 1);
     } catch(e){
@@ -48,7 +48,7 @@ function FilmsList({ search }) {
 
   useEffect(() => {
     getPopulars();
-  }, []);
+  }, [year, genre]);
 
   
   if ( films.length === 0 ) {

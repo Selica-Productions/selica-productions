@@ -8,7 +8,7 @@ function Navbar({search, onSearch}) {
     <nav className="navbar navbar-expand-lg bg-info">
       <div className="container-fluid">
         <img src={logo} alt="Logo aplicación" className="logo" />
-          <Link className="navbar-brand" to="/"> Iron Tomatoes </Link>
+          <Link className="navbar-brand" to="/"> Selica Productions </Link>
         <div className="d-flex justify-content-center align-items-center w-100">
           <Searchbar onChange={onSearch} search={search}/>
         </div>
