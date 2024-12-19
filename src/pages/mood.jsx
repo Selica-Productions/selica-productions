@@ -37,7 +37,7 @@ const MoodPage = () => {
   return (
     <div className="container text-center py-4">
       <h1>How are you feeling today?</h1>
-      <div className="my-4" style={{ fontSize: "2rem" }}>
+      <div className="my-4" style={{ fontSize: "4rem" }}>
         {Object.keys(emojiGenres).map((emoji) => (
           <span
             key={emoji}
@@ -55,7 +55,7 @@ const MoodPage = () => {
       {error && <p className="text-danger">{error}</p>}
       <div className="row">
         {movies.map((movie) => (
-          <div className="col-md-4 mb-4" key={movie.id}>
+          <div className="col-md-2 mb-4" key={movie.id}>
             <div
               className="card h-100"
               style={{ cursor: "pointer" }}
@@ -70,7 +70,7 @@ const MoodPage = () => {
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">
                   {movie.overview
-                    ? `${movie.overview.substring(0, 100)}...`
+                    ? `${movie.overview.substring(0, 50)}...`
                     : "No description available."}
                 </p>
               </div>
