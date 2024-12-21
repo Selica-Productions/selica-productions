@@ -43,7 +43,7 @@ export const loadFilmPages = async (page) => {
 };
 
 //--Get Movies by Genre--
-export const getMoviesByGenre = async (genreId) => {
+export const getMoviesByGenre = async ( genreId ) => {
   try {
     const response = await api.get("/discover/movie", {
       params: {
@@ -74,3 +74,4 @@ export const getTopRatedMovies = async () => {
     );
   }
 };
+

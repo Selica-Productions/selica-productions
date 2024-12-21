@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getPopularMovies, loadFilmPages } from "../../../service/moviesService";
 import { maxPages } from "../../../utils/constants"
 
-function FilmsList({ search, year, genre }) {
+function FilmsList({ search, movies }) {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1); //Current page. Each page has 20 films.
@@ -12,7 +12,7 @@ function FilmsList({ search, year, genre }) {
   //--Popular films (20 films) -> execute only once--
   const getPopulars = async() => {
     try {
-      const popularFilms = await getPopularMovies({ year, genre });
+      const popularFilms = await getPopularMovies();
       setFilms(popularFilms);
       setPage(page + 1);
     } catch(e){
@@ -35,6 +35,7 @@ function FilmsList({ search, year, genre }) {
     }
   };
 
+
   const handleLoadMore = () => {
     if (page <= maxPages && !loading) {
       getMoreFilms(page);
@@ -43,12 +44,16 @@ function FilmsList({ search, year, genre }) {
 
   //--Searched Films--
   const searchedFilms = films.filter( 
-      film => !search || film.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()) 
+    film => !search || film.title.toLocaleLowerCase().includes( search.toLocaleLowerCase() ) 
   )
 
   useEffect(() => {
     getPopulars();
-  }, [year, genre]);
+  }, [ search ]);
+
+  useEffect(() => {
+    setFilms( movies );
+  }, [ movies ])
 
   
   if ( films.length === 0 ) {
@@ -58,12 +63,12 @@ function FilmsList({ search, year, genre }) {
   return (
     <div className="container mt-5">
       <div className="row">
-        {searchedFilms.length > 0 ? ( 
+        { searchedFilms.length > 0 ? ( 
           searchedFilms.map((film) => (
           <div className="col-md-3 mb-4" key={film.id}>
             <div className="card h-100">
               <img
-                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${ film.poster_path }`}
                 className="card-img-top"
                 alt={film.title}
               />
