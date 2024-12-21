@@ -40,7 +40,7 @@ const MoodPage = () => {
       <div className="my-4" style={{ fontSize: "4rem" }}>
         {Object.keys(emojiGenres).map((emoji) => (
           <span
-            key={emoji}
+            key={ emoji }
             className="mx-2"
             style={{ cursor: "pointer" }}
             onClick={() => handleMoodClick(emoji)}
