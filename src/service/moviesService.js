@@ -58,3 +58,19 @@ export const getMoviesByGenre = async (genreId) => {
     );
   }
 };
+
+//--Get Top Rated Movies--
+export const getTopRatedMovies = async () => {
+  try {
+    const response = await api.get("/movie/top_rated");
+    return response.data.results.map((movie) => ({
+      ...movie,
+      vote_average_percentage: Math.round(movie.vote_average * 10),
+    }));
+  } catch (error) {
+    console.error("Error fetching top-rated movies:", error);
+    throw new Error(
+      "Could not fetch top-rated movies. Please try again later. 😔🎬"
+    );
+  }
+};
