@@ -59,6 +59,7 @@ export const getMoviesByGenre = async ( genreId ) => {
   }
 };
 
+
 //--Get Top Rated Movies--
 export const getTopRatedMovies = async () => {
   try {
@@ -73,5 +74,4 @@ export const getTopRatedMovies = async () => {
       "Could not fetch top-rated movies. Please try again later. 😔🎬"
     );
   }
-};
-
+}

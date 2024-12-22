@@ -2,19 +2,20 @@ import { PageLayout } from "../components/layouts";
 import FilterDropdown from "../components/filters/filter-dropdown/filter-dropdown";
 import FilmsList from '../components/films/films-list/films-list';
 import { YEARS, GENRES } from "../utils/constants"
-import { useState } from "react";
-import { getMoviesByGenre } from "../service/moviesService";
+import { useEffect, useState } from "react";
+import { getMoviesByGenre, getPopularMovies } from "../service/moviesService";
 
 function MoviesPage() {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
+  const [filteredFilms, setFilteredFilms] = useState([])
 
   //--Films by Genre--
   const onSelectedGenre = async ( genre ) => {
     try {
-      const films = await getMoviesByGenre( genre.id );
-      setFilms( films );
-      
+      const movies = await getMoviesByGenre( genre.id );
+      setFilteredFilms( movies );
+
     } catch (err) {
       setError(err.message);
       console.log( error );
@@ -22,14 +23,36 @@ function MoviesPage() {
     }
   };
 
+  //--Get Popular Movies--
+  const getPopulars = async () => {
+    try {
+      const movies = await getPopularMovies();
+      setFilms( movies );
+      setFilteredFilms( movies );
+
+    } catch (err) {
+      setError(err.message);
+      console.log(error);
+    }
+  };
+
+  //--Clear Filters--
+  const onClearFilters = () => {
+    getPopulars();
+  };
+
+  useEffect(() => {
+    getPopulars(); 
+  }, []); 
 
   return (
     <PageLayout>
       <div className="d-flex gap-3">
         {/* <FilterDropdown type="Year" options={ YEARS } onChange={( value ) => onSelectedFilter( "Year", value )} /> */}
         <FilterDropdown type="Genre" options={ GENRES } onSelected={( genre ) => onSelectedGenre( genre )}/>
+        <button onClick = {() => onClearFilters() } > Clear </button>
       </div>
-      <FilmsList movies = { films } />
+      <FilmsList movies = { filteredFilms } />
     </PageLayout>
   )
 }

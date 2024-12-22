@@ -21,7 +21,7 @@ const MoodPage = () => {
     const { genreId, name } = emojiGenres[emoji];
     setSelectedMood(name);
     try {
-      const movies = await getMoviesByGenre(genreId);
+      const movies = await getMoviesByGenre( genreId );
       setMovies(movies);
       setError(null);
     } catch (err) {
