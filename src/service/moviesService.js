@@ -59,6 +59,22 @@ export const getMoviesByGenre = async ( genreId ) => {
   }
 };
 
+//--Get Movies by Genre--
+export const getMoviesByYear = async ( year ) => {
+  try {
+    const response = await api.get("/discover/movie", {
+      params: {
+        primary_release_year: year,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      "Could not fetch movies for this genre. Please try again later. 😔🎬"
+    );
+  }
+};
 
 //--Get Top Rated Movies--
 export const getTopRatedMovies = async () => {

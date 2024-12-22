@@ -3,7 +3,7 @@ import FilterDropdown from "../components/filters/filter-dropdown/filter-dropdow
 import FilmsList from '../components/films/films-list/films-list';
 import { YEARS, GENRES } from "../utils/constants"
 import { useEffect, useState } from "react";
-import { getMoviesByGenre, getPopularMovies } from "../service/moviesService";
+import { getMoviesByGenre, getMoviesByYear, getPopularMovies } from "../service/moviesService";
 
 function MoviesPage() {
   const [films, setFilms] = useState([]);
@@ -14,6 +14,19 @@ function MoviesPage() {
   const onSelectedGenre = async ( genre ) => {
     try {
       const movies = await getMoviesByGenre( genre.id );
+      setFilteredFilms( movies );
+
+    } catch (err) {
+      setError(err.message);
+      console.log( error );
+      setFilms([]);
+    }
+  };
+
+  //--Films by Genre--
+  const onSelectedYear = async ( year ) => {
+    try {
+      const movies = await getMoviesByYear( year );
       setFilteredFilms( movies );
 
     } catch (err) {
@@ -48,7 +61,7 @@ function MoviesPage() {
   return (
     <PageLayout>
       <div className="d-flex gap-3">
-        {/* <FilterDropdown type="Year" options={ YEARS } onChange={( value ) => onSelectedFilter( "Year", value )} /> */}
+        <FilterDropdown type="Year" options={ YEARS } onSelected={( year ) => onSelectedYear( year )} />
         <FilterDropdown type="Genre" options={ GENRES } onSelected={( genre ) => onSelectedGenre( genre )}/>
         <button onClick = {() => onClearFilters() } > Clear </button>
       </div>
