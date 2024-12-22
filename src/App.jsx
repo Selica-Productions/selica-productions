@@ -38,7 +38,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<HomePage search={search} />} />
-            <Route path="/movies" element={<MoviesPage />} />
+            <Route path="/movies" element={<MoviesPage search={search} />} />
             <Route path="/mood" element={<MoodPage />} />
             <Route path="/map" element={<MapPage />} />
             <Route
@@ -63,3 +63,5 @@ function App() {
 }
 
 export default App;
+
+

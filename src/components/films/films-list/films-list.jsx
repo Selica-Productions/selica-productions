@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getPopularMovies, loadFilmPages } from "../../../service/moviesService";
@@ -35,32 +36,38 @@ function FilmsList({ search, movies }) {
     }
   };
 
-
-  const handleLoadMore = () => {
-    if (page <= maxPages && !loading) {
-      getMoreFilms(page);
-    }
+const handleLoadMore = () => {
+  if (page <= maxPages && !loading) {
+    getMoreFilms(page);
   }
+}
 
-  // //--Searched Films--
-  // const searchedFilms = films.filter( 
-  //   film => !search || film.title.toLocaleLowerCase().includes( search.toLocaleLowerCase() ) 
-  // )
+//--Searched Films--
+const searchedFilms = films.filter(
+  (film) => !search || film.title.toLowerCase().includes(search.toLowerCase())
+);
 
-  // useEffect(() => {
-  //   getPopulars();
-  // }, [ search ]);
+//Get all films and search by title:
+useEffect(() => {
+  const getFilms = async () => {
+    if ( movies && movies.length > 0 ) {
+      setFilms(movies);
 
-  useEffect(() => {
-    const films = getPopulars();
-    setFilms( films );
-  }, []);
-
-  useEffect(() => {
-    if ( movies ) {
-      setFilms( movies );
+    } else {
+      await getPopulars();
     }
-  }, [ movies ]);
+  };
+  getFilms();
+}, [ movies ]);
+
+//Get movies with filter:
+useEffect(() => {
+  if ( !movies ) {
+    getPopulars();
+  } else {
+    setFilms( movies );
+  }
+}, [ movies ]);
 
   
   if ( films.length === 0 ) {
@@ -70,8 +77,8 @@ function FilmsList({ search, movies }) {
   return (
     <div className="container mt-5">
       <div className="row">
-        { films.length > 0 ? ( 
-          films.map((film) => (
+        { searchedFilms.length > 0 ? ( 
+          searchedFilms.map((film) => (
           <div className="col-md-3 mb-4" key={film.id}>
             <div className="card h-100">
               <img
@@ -104,3 +111,4 @@ function FilmsList({ search, movies }) {
 }
 
 export default FilmsList;
+

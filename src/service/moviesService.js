@@ -31,7 +31,7 @@ export const getFilmDetails = async (id) => {
 export const loadFilmPages = async (page) => {
   try {
     const response = await api.get(
-      `/movie/popular?page=${page}&api_key=${import.meta.env.API_KEY}}`
+      `/movie/popular?page=${page}`
     );
     return response.data.results;
   } catch (error) {
@@ -59,7 +59,7 @@ export const getMoviesByGenre = async ( genreId ) => {
   }
 };
 
-//--Get Movies by Genre--
+//--Get Movies by Year--
 export const getMoviesByYear = async ( year ) => {
   try {
     const response = await api.get("/discover/movie", {
@@ -71,7 +71,7 @@ export const getMoviesByYear = async ( year ) => {
   } catch (error) {
     console.error(error);
     throw new Error(
-      "Could not fetch movies for this genre. Please try again later. 😔🎬"
+      "Could not fetch movies for this year. Please try again later. 😔🎬"
     );
   }
 };
@@ -91,3 +91,16 @@ export const getTopRatedMovies = async () => {
     );
   }
 }
+
+// //--Get Sorted Movies--
+// export const getSortedMovies = async ( sortOption ) => {
+//   try {
+//     const response = await api.get
+//   } catch( error ) {
+//     console.error("Error fetching top-rated movies:", error);
+//     throw new Error(
+//       "The movies could not be sorted. Please try again later. 😔🎬"
+//     );
+//   }
+// }
+
