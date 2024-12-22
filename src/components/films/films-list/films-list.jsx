@@ -42,18 +42,25 @@ function FilmsList({ search, movies }) {
     }
   }
 
-  //--Searched Films--
-  const searchedFilms = films.filter( 
-    film => !search || film.title.toLocaleLowerCase().includes( search.toLocaleLowerCase() ) 
-  )
+  // //--Searched Films--
+  // const searchedFilms = films.filter( 
+  //   film => !search || film.title.toLocaleLowerCase().includes( search.toLocaleLowerCase() ) 
+  // )
+
+  // useEffect(() => {
+  //   getPopulars();
+  // }, [ search ]);
 
   useEffect(() => {
-    getPopulars();
-  }, [ search ]);
+    const films = getPopulars();
+    setFilms( films );
+  }, []);
 
   useEffect(() => {
-    setFilms( movies );
-  }, [ movies ])
+    if ( movies ) {
+      setFilms( movies );
+    }
+  }, [ movies ]);
 
   
   if ( films.length === 0 ) {
@@ -63,8 +70,8 @@ function FilmsList({ search, movies }) {
   return (
     <div className="container mt-5">
       <div className="row">
-        { searchedFilms.length > 0 ? ( 
-          searchedFilms.map((film) => (
+        { films.length > 0 ? ( 
+          films.map((film) => (
           <div className="col-md-3 mb-4" key={film.id}>
             <div className="card h-100">
               <img
