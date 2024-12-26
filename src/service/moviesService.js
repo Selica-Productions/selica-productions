@@ -92,12 +92,26 @@ export const getTopRatedMovies = async () => {
   }
 }
 
-// //--Get Sorted Movies--
+//--Get Upcoming Movies --
+export const getUpcomingMovies = async () => {
+  try {
+    const response = await api.get("https://api.themoviedb.org/3/movie/upcoming?page=1");
+    return response.data.results;
+  } catch ( error ) {
+    console.log(error);
+    throw new Error(
+      "Could not fetch upcoming movies. Please try again later. 😔🎬"
+    );
+  }
+}
+
+
+//--Get Sorted Movies--
 // export const getSortedMovies = async ( sortOption ) => {
 //   try {
 //     const response = await api.get
 //   } catch( error ) {
-//     console.error("Error fetching top-rated movies:", error);
+//     console.error(error);
 //     throw new Error(
 //       "The movies could not be sorted. Please try again later. 😔🎬"
 //     );
