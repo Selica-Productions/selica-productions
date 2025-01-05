@@ -1,7 +1,9 @@
+import CountryMap from "../components/country-map/country-map";
+
 function MapPage() {
   console.log("Esto es el map")
   return (
-    <h1>Map</h1>
+    <CountryMap />
   )
 }
 
