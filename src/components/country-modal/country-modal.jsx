@@ -28,26 +28,31 @@ function CountryModal( { country }) {
             <h2> { `Movies from ${ country.NAME }:`} </h2>
             <div className="row">
                 { movies.length > 0 ? ( 
-                movies.map((film) => (
-                <div className="col-md-2 mb-4" key={ film.id }>
+                movies.map(( movie ) => (
+                <div className="col-md-2 mb-4" key={ movie.id }>
                     <div className="card h-100">
                     <img
-                        src={`https://image.tmdb.org/t/p/w500${ film.poster_path }`}
+                        src={ `https://image.tmdb.org/t/p/w500${ movie.poster_path }` }
                         className="card-img-top"
-                        alt={film.title}
+                        alt={ movie.title }
                     />
                     <div className="card-body">
-                        <h5 className="movie-title">{film.title}</h5>
+                        <h5 className="movie-title">
+                            { movie.title.length > 20 
+                                ? `${ movie.title.substring(0, 20) }...`
+                                : movie.title
+                            }
+                        </h5>
                         <p className="movie-text">
-                        {film.overview.length > 100
-                            ? film.overview.substring(0, 100) + "..."
-                            : film.overview}
+                        { movie.overview
+                            ? `${ movie.overview.substring(0, 50)}...`
+                            : "No description available." }
                         </p>
                     </div>
                     </div>
                 </div>
                 ))
-                ) : (<p> No films find </p>)
+                ) : (<p> No movies find </p>)
                 }
             </div>
         </div>
