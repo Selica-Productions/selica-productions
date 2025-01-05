@@ -33,9 +33,9 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className="d-flex flex-column min-vh-100">
         <Navbar search={search} onSearch={onSearch} />
-        <main>
+        <main className="flex-grow-1 py-3">
           <Routes>
             <Route path="/" element={<HomePage search={search} />} />
             <Route path="/movies" element={<MoviesPage search={search} />} />

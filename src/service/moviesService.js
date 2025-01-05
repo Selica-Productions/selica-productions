@@ -105,6 +105,19 @@ export const getUpcomingMovies = async () => {
   }
 }
 
+//--Get Movies from Countries--
+export const getCountryMovies = async ( country ) => {
+  try {
+    const response = await api.get(`/discover/movie?sort_by=popularity.desc&with_origin_country=${ country }`);
+    return response.data.results;
+  } catch ( error ) {
+    console.log( error );
+    throw new Error (
+      `Could not fetch Movies from ${ country }. Please try again later. 😔🎬`
+    )
+  }
+}
+
 
 //--Get Sorted Movies--
 // export const getSortedMovies = async ( sortOption ) => {

@@ -1,8 +1,7 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
-
 function Footer() {
   return (
-    <footer className="bg-dark text-light py-4 mt-auto">
+    <footer className="bg-dark text-light py-4">
       <div className="container">
         <div className="row d-flex justify-content-between">
           <div className="col-md-3 m-2">

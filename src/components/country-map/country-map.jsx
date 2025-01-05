@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import L from "leaflet";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import axios from "axios";
+import CountryModal from "../country-modal/country-modal";
 
 function CountryMap() {
   // --Ref-- -> div element that will contain the map
@@ -10,6 +10,8 @@ function CountryMap() {
 
   //--State countries:--
   const [ countries, setCountries ] = useState( null );
+  //--State selected country:--
+  const [ selectedCountry, setSelectedCountry ] = useState( null );
 
   // --File path-- ( data of countries )
   const countriesJSON = "/src/assets/geojson/countries.json";
@@ -30,9 +32,19 @@ function CountryMap() {
     axios.get( countriesJSON )
     .then( (response) => {
       // --Set the countries--:
-      setCountries( response.data );
+      const data = response.data;
+      setCountries( data );
       // --Add the countries to the map:--:
-      L.geoJson( countries ).addTo( map );
+      const countriesLayer = L.geoJson( data ).addTo( map );
+
+      // --Add the event click to each country ( layer )--:
+      countriesLayer.eachLayer( (layer) => {
+        layer.addEventListener( "click", () => {
+          // --Get the name of the selected country--:
+          const country = layer.feature.properties;
+          setSelectedCountry( country );
+        });
+      })
     })
     .catch( (error) => {
       console.log( "Error loading GeoJson -> ", error );
@@ -46,10 +58,16 @@ function CountryMap() {
   }, [] );
 
   return (
-    <div>
-      <h1>Countries Map</h1>
-      {/* --Map container-- */}
-      <div id="map" style={{ height: "600px", width: "100%" }} ref={ mapRef }></div>
+    <div className="mx-5 my-3">
+      { !selectedCountry ? (
+        <div className="d-flex flex-column gap-3">
+          <h1>Countries Map</h1>
+          <div id="map" style={{ height: "600px", width: "100%" }} ref={ mapRef }></div>
+        </div>
+      ) : (
+        <CountryModal country = { selectedCountry }/>
+      )
+      }
     </div>
   )
 }

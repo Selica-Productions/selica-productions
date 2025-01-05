@@ -1,0 +1,18 @@
+.modal-country-container {
+    width: 70%;
+    margin: auto;
+}
+
+.content-movies {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+}
+
+.movie-title {
+    font-size: 1rem;
+}
+
+.movie-text {
+    font-size: 0.9rem;
+}
