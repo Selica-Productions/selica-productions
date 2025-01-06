@@ -74,3 +74,21 @@ export const getTopRatedMovies = async () => {
     );
   }
 };
+
+//--Get Upcoming Movies--
+export const getUpcomingMovies = async () => {
+  try {
+    const response = await api.get("/movie/upcoming", {
+      params: {
+        language: "en-US",
+        page: 1,
+      },
+    });
+    return response.data.results.slice(0, 10);
+  } catch (error) {
+    console.error("Error fetching upcoming movies:", error);
+    throw new Error(
+      "Could not fetch upcoming movies. Please try again later. 😔🎬"
+    );
+  }
+};
