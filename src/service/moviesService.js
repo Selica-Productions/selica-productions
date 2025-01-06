@@ -30,9 +30,7 @@ export const getFilmDetails = async (id) => {
 //--Load more pages--
 export const loadFilmPages = async (page) => {
   try {
-    const response = await api.get(
-      `/movie/popular?page=${page}`
-    );
+    const response = await api.get(`/movie/popular?page=${page}`);
     return response.data.results;
   } catch (error) {
     console.log(error);
@@ -43,7 +41,7 @@ export const loadFilmPages = async (page) => {
 };
 
 //--Get Movies by Genre--
-export const getMoviesByGenre = async ( genreId ) => {
+export const getMoviesByGenre = async (genreId) => {
   try {
     const response = await api.get("/discover/movie", {
       params: {
@@ -60,7 +58,7 @@ export const getMoviesByGenre = async ( genreId ) => {
 };
 
 //--Get Movies by Year--
-export const getMoviesByYear = async ( year ) => {
+export const getMoviesByYear = async (year) => {
   try {
     const response = await api.get("/discover/movie", {
       params: {
@@ -90,34 +88,40 @@ export const getTopRatedMovies = async () => {
       "Could not fetch top-rated movies. Please try again later. 😔🎬"
     );
   }
-}
+};
 
-//--Get Upcoming Movies --
+//--Get Upcoming Movies--
 export const getUpcomingMovies = async () => {
   try {
-    const response = await api.get("https://api.themoviedb.org/3/movie/upcoming?page=1");
-    return response.data.results;
-  } catch ( error ) {
-    console.log(error);
+    const response = await api.get("/movie/upcoming", {
+      params: {
+        language: "en-US",
+        page: 1,
+      },
+    });
+    return response.data.results.slice(0, 10);
+  } catch (error) {
+    console.error("Error fetching upcoming movies:", error);
     throw new Error(
       "Could not fetch upcoming movies. Please try again later. 😔🎬"
     );
   }
-}
+};
 
 //--Get Movies from Countries--
-export const getCountryMovies = async ( country ) => {
+export const getCountryMovies = async (country) => {
   try {
-    const response = await api.get(`/discover/movie?sort_by=popularity.desc&with_origin_country=${ country }`);
+    const response = await api.get(
+      `/discover/movie?sort_by=popularity.desc&with_origin_country=${country}`
+    );
     return response.data.results;
-  } catch ( error ) {
-    console.log( error );
-    throw new Error (
-      `Could not fetch Movies from ${ country }. Please try again later. 😔🎬`
-    )
+  } catch (error) {
+    console.log(error);
+    throw new Error(
+      `Could not fetch Movies from ${country}. Please try again later. 😔🎬`
+    );
   }
-}
-
+};
 
 //--Get Sorted Movies--
 // export const getSortedMovies = async ( sortOption ) => {
@@ -130,4 +134,4 @@ export const getCountryMovies = async ( country ) => {
 //     );
 //   }
 // }
-
+//};

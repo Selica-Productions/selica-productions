@@ -40,7 +40,7 @@ const TopRatedMovies = () => {
                     {movie.title}{" "}
                     {index < 3 && (
                       <span className="badge bg-danger text-white">
-                        🍿 Editor's Pick 🍿
+                        Editor's Pick 🍿
                       </span>
                     )}
                   </td>
