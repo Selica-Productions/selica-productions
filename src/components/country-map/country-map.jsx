@@ -8,8 +8,6 @@ function CountryMap() {
   // --Ref-- -> div element that will contain the map
   const mapRef = useRef();
 
-  //--State countries:--
-  const [ countries, setCountries ] = useState( null );
   //--State selected country:--
   const [ selectedCountry, setSelectedCountry ] = useState( null );
 
@@ -33,7 +31,6 @@ function CountryMap() {
     .then( (response) => {
       // --Set the countries--:
       const data = response.data;
-      setCountries( data );
       // --Add the countries to the map:--:
       const countriesLayer = L.geoJson( data ).addTo( map );
 
@@ -59,15 +56,11 @@ function CountryMap() {
 
   return (
     <div className="mx-5 my-3">
-      { !selectedCountry ? (
         <div className="d-flex flex-column gap-3">
           <h1>Countries Map</h1>
           <div id="map" style={{ height: "600px", width: "100%" }} ref={ mapRef }></div>
         </div>
-      ) : (
-        <CountryModal country = { selectedCountry }/>
-      )
-      }
+        { selectedCountry && <CountryModal country = { selectedCountry }/> }
     </div>
   )
 }
