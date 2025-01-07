@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTopRatedMovies } from "../../../service/moviesService";
+import { Link } from "react-router-dom";
 
 const TopRatedMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -37,7 +38,13 @@ const TopRatedMovies = () => {
               {column1.map((movie, index) => (
                 <tr key={movie.id}>
                   <td>
-                    {movie.title}{" "}
+                    <Link
+                      to={`/film/${movie.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {movie.title}
+                    </Link>
+                    <span className="ms-3"></span>
                     {index < 3 && (
                       <span className="badge bg-danger text-white">
                         Editor's Pick 🍿
@@ -57,7 +64,14 @@ const TopRatedMovies = () => {
             <tbody>
               {column2.map((movie) => (
                 <tr key={movie.id}>
-                  <td>{movie.title}</td>
+                  <td>
+                    <Link
+                      to={`/film/${movie.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {movie.title}
+                    </Link>
+                  </td>
                   <td className="text-end">
                     ⭐ {movie.vote_average_percentage}%
                   </td>
