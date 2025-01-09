@@ -2,6 +2,15 @@
     width: 80px
   };
 
-  .collapse {
-    margin-left: 0;
-  }
+.collapse {
+  margin-left: 0;
+}
+
+/* Fixed top navbar */
+.navbar {
+  z-index: 1000; /* To ensure the navbar is above the rest of the elements */
+}
+
+body {
+  padding-top: 70px; /* To prevent the navbar hidden the content */
+}

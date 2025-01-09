@@ -8,7 +8,10 @@ import TrendingTV from "../components/trending-tv/trending-tv";
 function HomePage({ search }) {
   return (
     <PageLayout>
-      <Carousel />
+      <div className="d-flex justify-content-center">
+        <Carousel page = "1" />
+        <Carousel page = "2"/>
+      </div>
       <TrendingTV />
       <TopRatedMovies />
       <FilmsList search={search} />

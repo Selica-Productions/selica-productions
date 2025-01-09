@@ -91,14 +91,9 @@ export const getTopRatedMovies = async () => {
 };
 
 //--Get Upcoming Movies--
-export const getUpcomingMovies = async () => {
+export const getUpcomingMovies = async ( page ) => {
   try {
-    const response = await api.get("/movie/upcoming", {
-      params: {
-        language: "en-US",
-        page: 1,
-      },
-    });
+    const response = await api.get(`/movie/upcoming?page=${ page }`);
     return response.data.results.slice(0, 10);
   } catch (error) {
     console.error("Error fetching upcoming movies:", error);

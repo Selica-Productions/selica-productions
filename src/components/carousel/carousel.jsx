@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getUpcomingMovies } from '../../service/moviesService';
 import "./carousel.css";
 
-function Carousel() {
+function Carousel( { page }) {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0); //Start 0 index
@@ -10,7 +10,7 @@ function Carousel() {
   //--Get upcoming films--
   const getUpcomingFilms = async () => {
     try {
-      const upcomingFilms = await getUpcomingMovies();
+      const upcomingFilms = await getUpcomingMovies( page );
       setFilms(upcomingFilms);
     } catch (e) {
       setError(e.message);
@@ -21,6 +21,17 @@ function Carousel() {
   useEffect(() => {
     getUpcomingFilms();
   }, []);
+
+  /* --Auto Slide:-- */
+  useEffect(() => {
+    // Set interval ( auto image slide each 3 seconds )
+    const interval = setInterval(() => {
+      setActiveIndex(( index ) => index === films.length -1 ? 0 : index +1 )
+    }, 3000);
+
+    // Clear the interval when the component unmount:
+    return () => clearInterval( interval );
+  }, [ films.length ])
 
   //--Handle Next and Previous Buttons--
   const handlePrevious = () => {
@@ -38,7 +49,7 @@ function Carousel() {
   }
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-container m-0 p-0">
       <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-indicators">
           { films.map((_, index) => (
