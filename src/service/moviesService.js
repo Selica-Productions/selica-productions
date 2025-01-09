@@ -123,6 +123,27 @@ export const getCountryMovies = async (country) => {
   }
 };
 
+//--Get Trending TV Shows--
+export const getTrendingTVShows = async () => {
+  try {
+    const response = await api.get("/discover/tv", {
+      params: {
+        include_adult: false,
+        include_null_first_air_dates: false,
+        language: "en-US",
+        page: 1,
+        sort_by: "popularity.desc",
+      },
+    });
+    return response.data.results.slice(0, 6);
+  } catch (error) {
+    console.log(error);
+    throw new Error(
+      "Could not fetch trending TV shows. Please try again later. 😔📺"
+    );
+  }
+};
+
 //--Get Sorted Movies--
 // export const getSortedMovies = async ( sortOption ) => {
 //   try {

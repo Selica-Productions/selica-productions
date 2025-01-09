@@ -29,7 +29,7 @@ const DiscoverMore = () => {
   return (
     <div className="container mt-5">
       <hr className="my-4" />
-      <h2 className="mb-4">Discover More</h2>
+      <h2 className="mb-4">🚀📽️ Discover More</h2>
       <div className="row">
         {cards.map((card, index) => (
           <div className="col-md-3" key={index}>
