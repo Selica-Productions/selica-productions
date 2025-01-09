@@ -5,16 +5,16 @@ function Footer() {
       <div className="container">
         <div className="row d-flex justify-content-between">
           <div className="col-md-3 m-2">
-            <h5>About IronTomatoes</h5>
+            <h5>About Selica</h5>
             <p>
-              IronTomatoes is your go-to website for exploring and discovering
-              popular movies, new releases, and more.
+              Selica is your go-to website for exploring and discovering popular
+              movies, new releases, and more.
             </p>
             <p>Join us and create your own personalized watchlist!</p>
           </div>
           <div className="col-md-3 m-2">
             <h5>Contact Us</h5>
-            <p>Email: contact@irontomatoest.com</p>
+            <p>Email: contact@selicaproductions.com</p>
             <p>Phone: +1 234 567 890</p>
           </div>
           <div className="col-md-3 m-2">
@@ -32,7 +32,9 @@ function Footer() {
         </div>
         <hr className="bg-light" />
         <div className="text-center">
-          <p className="mb-0">&copy; 2024 IronTomatoes. All rights reserved.</p>
+          <p className="mb-0">
+            &copy; 2024 Selica Productions. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
