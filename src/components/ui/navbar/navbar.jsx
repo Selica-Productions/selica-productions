@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Navbar({search, onSearch}) {
   return (
-    <nav className="navbar navbar-expand-lg bg-info-subtle">
+    <nav className="navbar navbar-expand-lg bg-info-subtle fixed-top">
       <div className="container-fluid">
         <img src={logo} alt="Logo aplicación" className="logo" />
           <Link className="navbar-brand" to="/"> Selica Productions </Link>
