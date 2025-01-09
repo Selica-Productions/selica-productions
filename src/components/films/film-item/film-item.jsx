@@ -2,30 +2,38 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getFilmDetails } from "../../../service/moviesService";
 
-function FilmItem({ addToWatchlist }) {
+function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
   const { id } = useParams();
   const [film, setFilm] = useState(null);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
-
-  const getFilm = async () => {
-    try {
-      const filmDetails = await getFilmDetails(id);
-      setFilm(filmDetails);
-    } catch (e) {
-      setError(e.message);
-    }
-  };
-
-  const handleAddToWatchlist = (film) => {
-    addToWatchlist(film);
-    setSuccessMessage("The movie was added successfully to your watchlist");
-    setTimeout(() => setSuccessMessage(""), 3000);
-  };
+  const [isInWatchlist, setIsInWatchlist] = useState(false);
 
   useEffect(() => {
-    getFilm();
-  }, [id]);
+    const fetchFilm = async () => {
+      try {
+        const filmDetails = await getFilmDetails(id);
+        setFilm(filmDetails);
+        setIsInWatchlist(watchlist.some((item) => item.id === filmDetails.id));
+      } catch (e) {
+        setError(e.message);
+      }
+    };
+
+    fetchFilm();
+  }, [id, watchlist]);
+
+  const handleToggleWatchlist = () => {
+    if (isInWatchlist) {
+      removeFromWatchlist(film.id);
+      setSuccessMessage("The movie was removed from your watchlist.");
+    } else {
+      addToWatchlist(film);
+      setSuccessMessage("The movie was added to your watchlist.");
+    }
+    setIsInWatchlist(!isInWatchlist);
+    setTimeout(() => setSuccessMessage(""), 3000);
+  };
 
   if (!film) {
     return <p>{error}</p>;
@@ -75,10 +83,12 @@ function FilmItem({ addToWatchlist }) {
             <strong>Runtime:</strong> {film.runtime} minutes
           </p>
           <button
-            onClick={() => handleAddToWatchlist(film)}
-            className="btn btn-primary m-4"
+            onClick={handleToggleWatchlist}
+            className={`btn m-4 ${
+              isInWatchlist ? "btn-danger" : "btn-primary"
+            }`}
           >
-            Add to Watchlist
+            {isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </button>
           {successMessage && (
             <p className="mt-3 text-success">{successMessage}</p>

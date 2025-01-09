@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navbar, Footer } from "./components/ui/index";
 import { FilmItem } from "./components/films/index";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   HomePage,
@@ -16,7 +17,7 @@ function App() {
 
   const onSearch = (event) => {
     setSearch(event.target.value);
-  }
+  };
 
   const addToWatchlist = (film) => {
     setWatchlist((prevList) => {
@@ -52,7 +53,13 @@ function App() {
             />
             <Route
               path="/film/:id"
-              element={<FilmItem addToWatchlist={addToWatchlist} />}
+              element={
+                <FilmItem
+                  addToWatchlist={addToWatchlist}
+                  removeFromWatchlist={removeFromWatchlist}
+                  watchlist={watchlist}
+                />
+              }
             />
           </Routes>
         </main>
@@ -63,5 +70,3 @@ function App() {
 }
 
 export default App;
-
-
