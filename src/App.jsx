@@ -10,6 +10,7 @@ import {
   MoviesPage,
   WatchListPage,
 } from "./pages";
+import AboutUs from "./components/about-us/about-us";
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
@@ -42,6 +43,7 @@ function App() {
             <Route path="/movies" element={<MoviesPage search={search} />} />
             <Route path="/mood" element={<MoodPage />} />
             <Route path="/map" element={<MapPage />} />
+            <Route path="/aboutus" element={<AboutUs />} />
             <Route
               path="/watchlist"
               element={

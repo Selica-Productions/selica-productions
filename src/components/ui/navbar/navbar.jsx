@@ -26,6 +26,9 @@ function Navbar({search, onSearch}) {
             <li className="nav-item">
               <Link className="nav-link" to="/watchlist"> WatchList </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link text-nowrap" to="/aboutus"> About us </Link>
+            </li>
           </ul>
         </div>
       </div>
