@@ -10,7 +10,7 @@ import {
   MoviesPage,
   WatchListPage,
 } from "./pages";
-import AboutUs from "./components/about-us/about-us";
+import AboutUs from "./pages/about-us";
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);

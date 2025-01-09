@@ -1,0 +1,24 @@
+.about-us-section {
+    text-align: center;
+    animation: appear 2s ease-in;
+}
+
+/* Hover: Strong words */
+strong {
+    color: rgb(109, 187, 201);
+}
+
+strong:hover {
+    color: rgb(20, 124, 143);
+}
+
+/* ANIMATIONS */
+@keyframes appear {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
