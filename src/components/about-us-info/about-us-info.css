@@ -1,0 +1,24 @@
+.about-us-section {
+    text-align: center;
+    animation: appear 2s ease-in;
+}
+
+strong, .about-link {
+    color: rgb(109, 187, 201);
+}
+
+/* Hover */
+.about-link:hover {
+    color: rgb(49, 149, 167);
+}
+
+/* ANIMATIONS */
+@keyframes appear {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
