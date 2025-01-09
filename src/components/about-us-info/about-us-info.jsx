@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./about-us-info.css"
 
 function AboutUsInfo() {
@@ -9,12 +10,28 @@ function AboutUsInfo() {
       <div className="about-us-content">
         <p>
             Welcome!👋 We are Selena and Jessica, the creators of 
-            <strong>Selica Productions</strong>, 
+            <strong> 
+                <Link className="about-link" to="/"> Selica Productions </Link> 
+            </strong>, 
             an interactive platform designed for movie lovers. 
         </p>
         <p>
-            Here you can save your favorite movies to your <strong>Watchlist 🎥</strong>, search for movies by name, filter by multiple criteria 🔍, check out reviews 📝, 
-            find personalized recommendations based on your mood 😎, and explore movies by country of origin through an <strong>interactive map 🌍</strong>.
+            Here you can save your favorite movies to your 
+            <strong> 
+                <Link className="about-link" to="/watchlist"> Watchlist </Link> 🎥
+            </strong>, 
+            search for movies by name, 
+            <strong> 
+                <Link className="about-link" to="/movies"> filter</Link> 
+            </strong> by multiple criteria 🔍, 
+            check out reviews 📝, find personalized recommendations based on your 
+            <strong> 
+                <Link className="about-link" to="/mood"> mood </Link> 
+            </strong>😎, 
+            and explore movies by country of origin through an 
+            <strong> 
+                <Link className="about-link" to="/map"> interactive map</Link> 🌍
+            </strong>.
         </p>
 
         <p>
