@@ -27,11 +27,11 @@ function Carousel( { page }) {
     // Set interval ( auto image slide each 3 seconds )
     const interval = setInterval(() => {
       setActiveIndex(( index ) => index === films.length -1 ? 0 : index +1 )
-    }, 3000);
+    }, 6000);
 
     // Clear the interval when the component unmount:
     return () => clearInterval( interval );
-  }, [ films.length ])
+  }, [ activeIndex, films.length ])
 
   //--Handle Next and Previous Buttons--
   const handlePrevious = () => {
@@ -89,4 +89,4 @@ function Carousel( { page }) {
   );
 }
 
-export default Carousel
+export default Carousel;
