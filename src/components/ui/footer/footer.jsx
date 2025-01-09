@@ -5,10 +5,10 @@ function Footer() {
       <div className="container">
         <div className="row d-flex justify-content-between">
           <div className="col-md-3 m-2">
-            <h5>About Selica</h5>
+            <h5>About Selica Productions</h5>
             <p>
-              Selica is your go-to website for exploring and discovering popular
-              movies, new releases, and more.
+              Selica Productions is your go-to website for exploring and
+              discovering popular movies, new releases, and more.
             </p>
             <p>Join us and create your own personalized watchlist!</p>
           </div>

@@ -30,7 +30,7 @@ const TopRatedMovies = () => {
   return (
     <div className="top-rated-movies mt-5">
       <hr className="my-4" />
-      <h2 className="text-center mb-4">Top Rated Movies</h2>
+      <h2 className="mb-4">Top Rated Movies</h2>
       <div className="row">
         <div className="col-md-6">
           <table className="table table-hover">
