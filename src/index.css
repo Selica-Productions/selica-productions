@@ -1,3 +1,5 @@
+@import "/src/styles/variables.css";
+
 html,
 body,
 #root {
@@ -13,4 +15,12 @@ body,
 
 main {
   flex: 1;
+}
+
+
+h1 {
+  font-family: "Major Mono Display", serif;
+  color: var(--dark-blue);
+  font-weight: bold;
+  text-align: center;
 }

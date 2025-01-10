@@ -4,8 +4,8 @@ import "./about-us-info.css"
 function AboutUsInfo() {
   return (
     <section className="about-us-section d-flex flex-column gap-4">
-      <h2>About Us</h2>
-      <h3>🍿 Journey Into the Heart of Cinema 🍿</h3>
+      <h1>About Us</h1>
+      <h2>🍿 Journey Into the Heart of Cinema 🍿</h2>
 
       <div className="about-us-content">
         <p>

@@ -56,7 +56,7 @@ function CountryMap() {
 
   return (
     <div className="mx-5 my-3">
-        <div className="d-flex flex-column gap-3">
+        <div className="d-flex flex-column gap-4">
           <h1>Countries Map</h1>
           <div id="map" style={{ height: "600px", width: "100%" }} ref={ mapRef }></div>
         </div>

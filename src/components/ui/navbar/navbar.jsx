@@ -58,7 +58,7 @@ function Navbar({ search, onSearch, location }) {
       </nav>
 
       <div className="bg-secondary text-white py-2">
-        <div className="container d-flex justify-content-start align-items-center mt-4 mb-1">
+        <div className="container d-flex justify-content-start align-items-center mt-4 mb-1 gap-5">
           <span className="fw-bold me-3">TRENDING ON SELICA:</span>
           <a
             href="https://goldenglobes.com/live-coverage/"

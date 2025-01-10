@@ -1,6 +1,8 @@
+import PageLayout from "../components/layouts/page-layout/page-layout";
+
 function WatchListPage({ watchlist, removeFromWatchlist }) {
   return (
-    <div className="container mt-5 mb-5">
+    <PageLayout className="d-flex flex-column gap-4">
       <h1 className="text-center mb-4">My Watchlist</h1>
       {watchlist.length === 0 ? (
         <p className="text-center">
@@ -39,7 +41,7 @@ function WatchListPage({ watchlist, removeFromWatchlist }) {
           ))}
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 }
 
