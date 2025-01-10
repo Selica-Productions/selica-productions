@@ -21,7 +21,7 @@ const MoodPage = ({ search }) => {
     const { genreId, name } = emojiGenres[emoji];
     setSelectedMood(name);
     try {
-      const movies = await getMoviesByGenre( genreId );
+      const movies = await getMoviesByGenre(genreId);
       setMovies(movies);
       setError(null);
     } catch (err) {
@@ -30,23 +30,22 @@ const MoodPage = ({ search }) => {
     }
   };
 
-
   //--Search Movies--
   const searchedMovies = movies.filter(
     (film) => !search || film.title.toLowerCase().includes(search.toLowerCase())
   );
-    
+
   const handleCardClick = (movieId) => {
     navigate(`/film/${movieId}`);
   };
 
   return (
-    <div className="container text-center py-4">
+    <div className="container text-center py-4 mt-5">
       <h1>How are you feeling today?</h1>
       <div className="my-4" style={{ fontSize: "4rem" }}>
         {Object.keys(emojiGenres).map((emoji) => (
           <span
-            key={ emoji }
+            key={emoji}
             className="mx-2"
             style={{ cursor: "pointer" }}
             onClick={() => handleMoodClick(emoji)}

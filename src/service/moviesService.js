@@ -91,9 +91,9 @@ export const getTopRatedMovies = async () => {
 };
 
 //--Get Upcoming Movies--
-export const getUpcomingMovies = async ( page ) => {
+export const getUpcomingMovies = async (page) => {
   try {
-    const response = await api.get(`/movie/upcoming?page=${ page }`);
+    const response = await api.get(`/movie/upcoming?page=${page}`);
     return response.data.results.slice(0, 10);
   } catch (error) {
     console.error("Error fetching upcoming movies:", error);
@@ -130,7 +130,7 @@ export const getTrendingTVShows = async () => {
         sort_by: "popularity.desc",
       },
     });
-    return response.data.results.slice(0, 6);
+    return response.data.results.slice(0, 12);
   } catch (error) {
     console.log(error);
     throw new Error(

@@ -1,6 +1,6 @@
 .logo {
-    width: 80px
-  };
+  width: 80px;
+}
 
 .collapse {
   margin-left: 0;
@@ -13,4 +13,24 @@
 
 body {
   padding-top: 70px; /* To prevent the navbar hidden the content */
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff;
+}
+
+.navbar-nav .nav-link.active {
+  color: #0056b3;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
