@@ -1,5 +1,5 @@
 import Searchbar from "../../searchbar/searchbar";
-import logo from "../../../../src/assets/images/logo.png";
+import logo from "../../../../src/assets/images/logo.webp";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 
@@ -21,7 +21,7 @@ function Navbar({ search, onSearch, location }) {
             )}
           </div>
           <div className="collapse navbar-collapse">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4">
               <li className="nav-item">
                 <Link className="nav-link" to="/movies">
                   {" "}

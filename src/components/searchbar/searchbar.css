@@ -7,11 +7,11 @@
     height: 40px;
     border-color: transparent;
     color: var(--dark-blue);
+    font-family: "Roboto", sans-serif;
 }
 
 .searchbar::placeholder {
     color: var(--dark-blue);
-    opacity: 80%;
     font-weight:lighter;
 }
 
