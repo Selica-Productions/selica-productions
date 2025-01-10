@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { Navbar, Footer } from "./components/ui/index";
 import { FilmItem } from "./components/films/index";
 
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import {
   HomePage,
   MapPage,
@@ -23,16 +28,16 @@ function App() {
 
   //-- MOUNT: Recover the watchlist from localstorage--
   useEffect(() => {
-    const storedWatchlist = JSON.parse( localStorage.getItem("watchlist") ) || [];
-    setWatchlist( storedWatchlist );
+    const storedWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    setWatchlist(storedWatchlist);
   }, []);
 
   //--UPDATE WATCHLIST: Save watchlist in localstorage every time it changes--
   useEffect(() => {
-    if ( watchlist.length > 0) {
-      localStorage.setItem( "watchlist", JSON.stringify(watchlist) );
+    if (watchlist.length > 0) {
+      localStorage.setItem("watchlist", JSON.stringify(watchlist));
     }
-  }, [ watchlist ]);
+  }, [watchlist]);
 
   const addToWatchlist = (film) => {
     setWatchlist((prevList) => {
@@ -50,42 +55,54 @@ function App() {
   // When change the page, reset the search
   useEffect(() => {
     setSearch("");
-  }, [ location ]);
-
+  }, [location]);
 
   return (
-      <div className="d-flex flex-column min-vh-100">
-        <Navbar location={location.pathname} search={search} onSearch={onSearch} />
-        <main className="flex-grow-1 py-3">
-          <Routes>
-            <Route path="/" element={<HomePage search={search} setSearch={onSearch} />} />
-            <Route path="/movies" element={<MoviesPage search={search} setSearch={onSearch} />} />
-            <Route path="/mood" element={<MoodPage search={search} setSearch={onSearch} />} />
-            <Route path="/map" element={<MapPage />} />
-            <Route path="/aboutus" element={<AboutUs />} />
-            <Route
-              path="/watchlist"
-              element={
-                <WatchListPage
-                  watchlist={watchlist}
-                  removeFromWatchlist={removeFromWatchlist}
-                />
-              }
-            />
-            <Route
-              path="/film/:id"
-              element={
-                <FilmItem
-                  addToWatchlist={addToWatchlist}
-                  removeFromWatchlist={removeFromWatchlist}
-                  watchlist={watchlist}
-                />
-              }
-            />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+    <div className="d-flex flex-column min-vh-100">
+      <Navbar
+        location={location.pathname}
+        search={search}
+        onSearch={onSearch}
+      />
+      <main className="flex-grow-1 py-3">
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage search={search} setSearch={onSearch} />}
+          />
+          <Route
+            path="/movies"
+            element={<MoviesPage search={search} setSearch={onSearch} />}
+          />
+          <Route
+            path="/mood"
+            element={<MoodPage search={search} setSearch={onSearch} />}
+          />
+          <Route path="/map" element={<MapPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route
+            path="/watchlist"
+            element={
+              <WatchListPage
+                watchlist={watchlist}
+                removeFromWatchlist={removeFromWatchlist}
+              />
+            }
+          />
+          <Route
+            path="/film/:id"
+            element={
+              <FilmItem
+                addToWatchlist={addToWatchlist}
+                removeFromWatchlist={removeFromWatchlist}
+                watchlist={watchlist}
+              />
+            }
+          />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

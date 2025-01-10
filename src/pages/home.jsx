@@ -8,9 +8,12 @@ import TrendingTV from "../components/trending-tv/trending-tv";
 function HomePage({ search }) {
   return (
     <PageLayout>
+      <div>
+        <h2 className="mb-4">🔥🎬 Upcoming Movies</h2>
+      </div>
       <div className="d-flex justify-content-center">
-        <Carousel page = "1" />
-        <Carousel page = "2"/>
+        <Carousel page="1" />
+        <Carousel page="2" />
       </div>
       <TrendingTV />
       <TopRatedMovies />
