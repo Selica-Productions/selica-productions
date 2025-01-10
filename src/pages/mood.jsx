@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMoviesByGenre } from "../service/moviesService";
 
@@ -11,7 +11,7 @@ const emojiGenres = {
   "⚔️": { genreId: 28, name: "Action" },
 };
 
-const MoodPage = () => {
+const MoodPage = ({ search }) => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [selectedMood, setSelectedMood] = useState("");
@@ -30,6 +30,12 @@ const MoodPage = () => {
     }
   };
 
+
+  //--Search Movies--
+  const searchedMovies = movies.filter(
+    (film) => !search || film.title.toLowerCase().includes(search.toLowerCase())
+  );
+    
   const handleCardClick = (movieId) => {
     navigate(`/film/${movieId}`);
   };
@@ -54,7 +60,7 @@ const MoodPage = () => {
       )}
       {error && <p className="text-danger">{error}</p>}
       <div className="row">
-        {movies.map((movie) => (
+        {searchedMovies.map((movie) => (
           <div className="col-md-2 mb-4" key={movie.id}>
             <div
               className="card h-100"

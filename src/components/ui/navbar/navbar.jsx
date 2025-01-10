@@ -3,14 +3,14 @@ import logo from "../../../../src/assets/images/logo.png";
 import "./navbar.css"
 import { Link } from "react-router-dom";
 
-function Navbar({search, onSearch}) {
+function Navbar({search, onSearch, location}) {
   return (
     <nav className="navbar navbar-expand-lg bg-info-subtle fixed-top">
       <div className="container-fluid">
         <img src={logo} alt="Logo aplicación" className="logo" />
           <Link className="navbar-brand" to="/"> Selica Productions </Link>
         <div className="d-flex justify-content-center align-items-center w-100">
-          <Searchbar onChange={onSearch} search={search}/>
+          {(location === "/" || location === "/movies" || location === "/mood") && <Searchbar onChange={onSearch} search={search}/>}
         </div>
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">

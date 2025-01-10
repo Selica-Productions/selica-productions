@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   getPopularMovies,
   loadFilmPages,
@@ -60,6 +60,7 @@ function FilmsList({ search, movies }) {
     };
     getFilms();
   }, [movies]);
+  
 
   //Get movies with filter:
   useEffect(() => {
