@@ -21,6 +21,19 @@ function App() {
     setSearch(event.target.value);
   };
 
+  //-- MOUNT: Recover the watchlist from localstorage--
+  useEffect(() => {
+    const storedWatchlist = JSON.parse( localStorage.getItem("watchlist") ) || [];
+    setWatchlist( storedWatchlist );
+  }, []);
+
+  //--UPDATE WATCHLIST: Save watchlist in localstorage every time it changes--
+  useEffect(() => {
+    if ( watchlist.length > 0) {
+      localStorage.setItem( "watchlist", JSON.stringify(watchlist) );
+    }
+  }, [ watchlist ]);
+
   const addToWatchlist = (film) => {
     setWatchlist((prevList) => {
       if (prevList.some((item) => item.id === film.id)) {
