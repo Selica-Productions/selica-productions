@@ -1,15 +1,17 @@
+@import "/src/styles/variables.css";
+
 .about-us-section {
     text-align: center;
     animation: appear 2s ease-in;
 }
 
 strong, .about-link {
-    color: rgb(109, 187, 201);
+    color: var(--light-blue);
 }
 
 /* Hover */
 .about-link:hover {
-    color: rgb(49, 149, 167);
+    color: var(--dark-blue);
 }
 
 /* ANIMATIONS */
