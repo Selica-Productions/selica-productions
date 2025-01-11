@@ -27,8 +27,21 @@ export const getFilmDetails = async (id) => {
   }
 };
 
+//--Load more pages (Popular Films)--
+export const loadPopularFilmPages = async (page) => {
+  try {
+    const response = await api.get(`/movie/popular?page=${page}`);
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+    throw new Error(
+      "No more films available at the moment. Please try again later. 😔🎬"
+    );
+  }
+};
+
 //--Load more pages--
-export const loadFilmPages = async (page) => {
+export const loadCountryFilmPages = async (page) => {
   try {
     const response = await api.get(`/movie/popular?page=${page}`);
     return response.data.results;
@@ -104,12 +117,15 @@ export const getUpcomingMovies = async (page) => {
 };
 
 //--Get Movies from Countries--
-export const getCountryMovies = async (country) => {
+export const getCountryMovies = async (country, page) => {
   try {
     const response = await api.get(
-      `/discover/movie?sort_by=popularity.desc&with_origin_country=${country}`
+      `/discover/movie?page=${page}&sort_by=popularity.desc&with_origin_country=${country}`
     );
-    return response.data.results;
+    return {
+      moviesList: response.data.results,
+      total_pages: response.data.total_pages 
+    };
   } catch (error) {
     console.log(error);
     throw new Error(

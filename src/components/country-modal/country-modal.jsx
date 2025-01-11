@@ -1,31 +1,64 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getCountryMovies } from "../../service/moviesService";
 import "./country-modal.css"
+import { getPosterSrc } from "../../utils/constants";
 
 function CountryModal( { country }) {
     //-- State Movies --
     const [ movies, setMovies ] = useState( [] );
     const [ isClosing, setIsClosing ] = useState( false );
+    const [page, setPage] = useState(1);
+    const [ totalPages, setTotalPages ] = useState(1);
     const [ error, setError ] = useState( null );
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
-    // Handle close button
+    // --Handle close button--
     const handleClose = () => {
         setIsClosing( true );
+        setPage(1);
+    }
+
+    // --Handle Movie Click-- (Navigate to film item)
+    const handleMovieClick = ( movieId ) => {
+        navigate(`/film/${ movieId }`);
+    };
+
+
+    const getMovies = async () => {
+        if ( isLoading || page > totalPages ) return;
+
+        try {
+            setIsLoading(true);
+            const { moviesList, total_pages } = await getCountryMovies( country.ISO_A2_EH , page );
+            setMovies( (prevMovies) => [ ...prevMovies, ...moviesList ]);
+            setTotalPages( total_pages )
+            setIsClosing( false );
+            setPage( page + 1 );
+            console.log( country.NAME )
+            console.log( page )
+        } catch ( e ) {
+            setError( e.message );
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+
+    // --Handle Load More Movies --
+    const handleLoadMore = () => {
+      if ( page <= totalPages && !isLoading ) {
+        getMovies( country, page );
+      }
     }
 
     useEffect( () => {
-        const getMovies = async () => {
-            try {
-                const moviesList = await getCountryMovies( country.ISO_A2_EH );
-                console.log( country.ISO_A2_EH )
-                console.log( moviesList )
-                setMovies( moviesList );
-                setIsClosing( false );
-            } catch ( e ) {
-                setError( e.message );
-            }
-        }
-
+        setMovies([]); 
+        setIsClosing(false)
+        setPage(1);
+        setIsLoading(false);
+        setTotalPages(1);
         getMovies();
     }, [ country ]); 
 
@@ -41,31 +74,40 @@ function CountryModal( { country }) {
                 <h2> { `Movies from ${ country.NAME }:`} </h2>
                 <div className="row">
                     { movies.length > 0 ? ( 
-                    movies.map(( movie ) => (
-                    <div className="col-md-2 mb-4" key={ movie.id }>
-                        <div className="card h-100">
-                        <img
-                            src={ `https://image.tmdb.org/t/p/w500${ movie.poster_path }` }
-                            className="card-img-top"
-                            alt={ movie.title }
-                        />
-                        <div className="card-body">
-                            <h5 className="movie-title">
-                                { movie.title.length > 20 
-                                    ? `${ movie.title.substring(0, 20) }...`
-                                    : movie.title
-                                }
-                            </h5>
-                            <p className="movie-text">
-                            { movie.overview
-                                ? `${ movie.overview.substring(0, 50)}...`
-                                : "No description available." }
-                            </p>
-                        </div>
-                        </div>
-                    </div>
+                        movies.map(( movie, index ) => (
+                            <div className="col-md-2 mb-4" key={`${movie.id}-${ index }`}>
+                                <div className="card h-100"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => handleMovieClick(movie.id)}
+                                >
+                                    <img
+                                        src= { getPosterSrc( movie.poster_path ) }
+                                        className="card-img-top"
+                                        alt={ movie.title }
+                                    />
+                                    <div className="card-body">
+                                        <h5 className="movie-title">
+                                            { movie.title.length > 20 
+                                                ? `${ movie.title.substring(0, 20) }...`
+                                                : movie.title
+                                            }
+                                        </h5>
+                                        <p className="movie-text">
+                                        { movie.overview
+                                            ? `${ movie.overview.substring(0, 50)}...`
+                                            : "No description available." }
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                     ))
                     ) : (<p> No movies find </p>)
+                    }
+                    { page < totalPages  && (
+                        <div className="d-flex justify-content-center ">
+                            <button type="button" className="btn btn-secondary" onClick = { handleLoadMore }>Load More </button>
+                        </div>
+                    )
                     }
                 </div>
             </div>
