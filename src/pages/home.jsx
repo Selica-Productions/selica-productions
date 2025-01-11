@@ -17,6 +17,7 @@ function HomePage({ search }) {
       </div>
       <TrendingTV />
       <TopRatedMovies />
+      <hr className="my-4" />
       <FilmsList search={search} />
       <DiscoverMore />
     </PageLayout>

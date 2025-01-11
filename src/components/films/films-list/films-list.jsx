@@ -60,7 +60,6 @@ function FilmsList({ search, movies }) {
     };
     getFilms();
   }, [movies]);
-  
 
   //Get movies with filter:
   useEffect(() => {
@@ -77,8 +76,6 @@ function FilmsList({ search, movies }) {
 
   return (
     <div className="container mt-5">
-      <hr className="my-4" />
-      <h2 className="mb-4">🎥📚 Our Movies Catalogue</h2>
       <div className="row">
         {searchedFilms.length > 0 ? (
           searchedFilms.map((film) => (
