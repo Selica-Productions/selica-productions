@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTrendingTVShows } from "../../../service/moviesService";
 import { Link } from "react-router-dom";
+import ReadMoreButton from './../../ui/read-more-button/read-more-button';
 
 const TrendingTV = () => {
   const [trendingShows, setTrendingShows] = useState([]);
@@ -28,13 +29,13 @@ const TrendingTV = () => {
             <div className="card border-0 shadow-sm h-100">
               <img
                 src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-                className="card-img-top"
+                className="card-img-top h-75"
                 alt={show.name}
               />
               <div className="card-body text-center">
                 <h5 className="card-title text-truncate">{show.name}</h5>
-                <Link to={`/tv/${show.id}`} className="btn btn-primary mt-1">
-                  View More
+                <Link to={`/tv/${show.id}`} >
+                  <ReadMoreButton text="View More"/>
                 </Link>
               </div>
             </div>

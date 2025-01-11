@@ -5,7 +5,7 @@ import FilmsList from '../components/films/films-list/films-list';
 import { YEARS, GENRES, sortOptions } from "../utils/constants"
 import { useEffect, useState } from "react";
 import { getMoviesByGenre, getMoviesByYear, getPopularMovies, getSortedMovies } from "../service/moviesService";
-import ClearButton from "../components/ui/clear-button/clear-button";
+import { ClearButton } from "../components/ui";
 
 function MoviesPage({ search }) {
   const [films, setFilms] = useState([]);

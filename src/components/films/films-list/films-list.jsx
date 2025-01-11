@@ -5,6 +5,7 @@ import {
   loadPopularFilmPages,
 } from "../../../service/moviesService";
 import { getPosterSrc, maxPages } from "../../../utils/constants";
+import ReadMoreButton from "../../ui/read-more-button/read-more-button";
 
 function FilmsList({ search, movies }) {
   const [films, setFilms] = useState([]);
@@ -93,8 +94,8 @@ function FilmsList({ search, movies }) {
                       ? film.overview.substring(0, 100) + "..."
                       : film.overview}
                   </p>
-                  <Link to={`/film/${film.id}`} className="btn btn-primary">
-                    Read More
+                  <Link to={`/film/${film.id}`} >
+                    <ReadMoreButton text= {"Read More"} />
                   </Link>
                 </div>
               </div>

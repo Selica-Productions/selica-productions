@@ -85,9 +85,10 @@ function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
           </p>
           <button
             onClick={handleToggleWatchlist}
-            className={`btn m-4 ${
-              isInWatchlist ? "btn-danger" : "btn-primary"
-            }`}
+            className="btn m-4" 
+            style={{ backgroundColor: isInWatchlist ? 
+              "#ff6f61" : "var(--light-blue)" , 
+              color: "white"}}
           >
             {isInWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </button>
