@@ -1,42 +1,42 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getFilmDetails } from "../../../service/moviesService";
+import { getTVShowDetails } from "../../../service/moviesService";
 
-function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
+function TVItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
   const { id } = useParams();
-  const [film, setFilm] = useState(null);
+  const [show, setShow] = useState(null);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [isInWatchlist, setIsInWatchlist] = useState(false);
 
   useEffect(() => {
-    const fetchFilm = async () => {
+    const fetchShow = async () => {
       try {
-        const filmDetails = await getFilmDetails(id);
-        setFilm(filmDetails);
-        setIsInWatchlist(watchlist.some((item) => item.id === filmDetails.id));
+        const showDetails = await getTVShowDetails(id);
+        setShow(showDetails);
+        setIsInWatchlist(watchlist.some((item) => item.id === showDetails.id));
       } catch (e) {
         setError(e.message);
       }
     };
 
-    fetchFilm();
+    fetchShow();
   }, [id, watchlist]);
 
   const handleToggleWatchlist = () => {
     if (isInWatchlist) {
-      removeFromWatchlist(film.id);
-      setSuccessMessage("The movie was removed from your watchlist 🍿.");
+      removeFromWatchlist(show.id);
+      setSuccessMessage("The show was removed from your watchlist 🍿.");
     } else {
-      addToWatchlist(film);
-      setSuccessMessage("The movie was added to your watchlist 🍿.");
+      addToWatchlist(show);
+      setSuccessMessage("The show was added to your watchlist 🍿.");
     }
     setIsInWatchlist(!isInWatchlist);
     setTimeout(() => setSuccessMessage(""), 3000);
   };
 
-  if (!film) {
-    return <p>{error}</p>;
+  if (!show) {
+    return <p>{error || "Loading..."}</p>;
   }
 
   return (
@@ -44,8 +44,8 @@ function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
       <div className="row">
         <div className="col-md-4">
           <img
-            src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-            alt={film.title}
+            src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+            alt={show.name}
             className="img-fluid rounded"
           />
         </div>
@@ -59,28 +59,25 @@ function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
             fontSize: "20px",
           }}
         >
-          <h1 className="mb-4">{film.title}</h1>
+          <h1 className="mb-4">{show.name}</h1>
           <p>
             <i className="bi bi-calendar-event me-2 m-2"></i>
-            <strong>Year:</strong> {new Date(film.release_date).getFullYear()}
+            <strong>Release Date:</strong>{" "}
+            {new Date(show.first_air_date).getFullYear()}
           </p>
           <p>
             <i className="bi bi-translate me-2 m-2"></i>
-            <strong>Language:</strong> {film.original_language.toUpperCase()}
+            <strong>Language:</strong> {show.original_language.toUpperCase()}
           </p>
           <p>
             <i className="bi bi-film me-2 m-2"></i>
             <strong>Overview:</strong>
-            <p className="m-3">{film.overview}</p>
+            <p className="m-3">{show.overview}</p>
           </p>
           <p>
             <i className="bi bi-tags me-2 m-2"></i>
             <strong>Genres:</strong>{" "}
-            {film.genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p>
-            <i className="bi bi-clock me-2 m-2"></i>
-            <strong>Runtime:</strong> {film.runtime} minutes
+            {show.genres.map((genre) => genre.name).join(", ")}
           </p>
           <button
             onClick={handleToggleWatchlist}
@@ -99,4 +96,4 @@ function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
   );
 }
 
-export default FilmItem;
+export default TVItem;

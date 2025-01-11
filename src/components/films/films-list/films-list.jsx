@@ -101,7 +101,7 @@ function FilmsList({ search, movies }) {
             </div>
           ))
         ) : (
-          <p> No films find </p>
+          <p> No films found </p>
         )}
       </div>
       <div className="d-flex justify-content-center ">

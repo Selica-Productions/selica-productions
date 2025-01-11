@@ -6,7 +6,7 @@ function WatchListPage({ watchlist, removeFromWatchlist }) {
       <h1 className="text-center mb-4">My Watchlist</h1>
       {watchlist.length === 0 ? (
         <p className="text-center">
-          Your watchlist is empty. Start adding some movies!
+          Your watchlist is empty. Start adding some movies or series! 🎥📺
         </p>
       ) : (
         <div className="row gy-4">
@@ -23,7 +23,7 @@ function WatchListPage({ watchlist, removeFromWatchlist }) {
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
-                      <h2 className="card-title">{film.title}</h2>
+                      <h2 className="card-title">{film.title || film.name}</h2>
                       <p className="text-muted small">
                         {film.overview.slice(0, 100)}...
                       </p>

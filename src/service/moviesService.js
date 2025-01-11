@@ -139,15 +139,34 @@ export const getTrendingTVShows = async () => {
   }
 };
 
+//--Get TV Show Details--
+export const getTVShowDetails = async (id) => {
+  try {
+    const response = await api.get(`/tv/${id}`, {
+      params: {
+        language: "en-US",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      "Could not fetch TV show details. Please try again later. 😔📺"
+    );
+  }
+};
+
 //--Get Sorted Movies--
-export const getSortedMovies = async ( sortOption ) => {
-   try {
-    const response = await api.get(`discover/movie?sort_by=${ sortOption.value }`);
+export const getSortedMovies = async (sortOption) => {
+  try {
+    const response = await api.get(
+      `discover/movie?sort_by=${sortOption.value}`
+    );
     return response.data.results;
-   } catch( error ) {
-     console.error(error);
-     throw new Error(
-       "The movies could not be sorted. Please try again later. 😔🎬"
-     );
+  } catch (error) {
+    console.error(error);
+    throw new Error(
+      "The movies could not be sorted. Please try again later. 😔🎬"
+    );
   }
 };
