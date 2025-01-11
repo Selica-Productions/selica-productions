@@ -1,0 +1,23 @@
+@import "/src/styles/variables.css";
+
+/* DropwDown Button */
+.button-dropdown {
+    background-color: var(--light-blue) !important;
+    color: white;  
+    border-radius: 10px;
+    border-color: var(--dark-blue);
+}
+
+/* Hover */
+.button-dropdown:hover, .button-dropdown:active {
+    background-color: var(--dark-blue) !important;
+}
+
+.item-dropdown {
+    color: var(--dark-blue);
+}
+
+.item-dropdown:hover {
+    color: white;
+    background-color: var(--dark-blue);
+}

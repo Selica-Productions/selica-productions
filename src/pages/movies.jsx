@@ -78,7 +78,7 @@ function MoviesPage({ search }) {
         <FilterDropdown type="Year" options={ YEARS } onSelected={( year ) => onSelectedYear( year )} />
         <FilterDropdown type="Genre" options={ GENRES } onSelected={( genre ) => onSelectedGenre( genre )}/>
         <FilterDropdown type="Sort" options={ sortOptions } onSelected={( sortOption ) =>  onSelectedSort( sortOption )}/>
-        <button onClick = {() => onClearFilters() } > Clear </button>
+        <button className="clear-button" onClick = {() => onClearFilters() } > Clear </button>
       </div>
       <FilmsList movies = { filteredFilms } search={ search }/>
     </PageLayout>
