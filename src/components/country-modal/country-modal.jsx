@@ -10,39 +10,47 @@ function CountryModal( { country }) {
     const [page, setPage] = useState(1);
     const [ totalPages, setTotalPages ] = useState(1);
     const [ error, setError ] = useState( null );
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // --Handle close button--
     const handleClose = () => {
         setIsClosing( true );
+        setPage(1);
     }
 
     const getMovies = async () => {
-        if ( loading || page > totalPages ) return;
+        if ( isLoading || page > totalPages ) return;
 
         try {
-            setLoading(true);
+            setIsLoading(true);
             const { moviesList, total_pages } = await getCountryMovies( country.ISO_A2_EH , page );
             setMovies( (prevMovies) => [ ...prevMovies, ...moviesList ]);
             setTotalPages( total_pages )
             setIsClosing( false );
-            setPage(page + 1);
+            setPage( page + 1 );
+            console.log( country.NAME )
+            console.log( page )
         } catch ( e ) {
             setError( e.message );
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     }
 
 
     // --Handle Load More Movies --
     const handleLoadMore = () => {
-      if ( page <= maxPages && !loading ) {
+      if ( page <= totalPages && !isLoading ) {
         getMovies( country, page );
       }
     }
 
     useEffect( () => {
+        setMovies([]); 
+        setIsClosing(false)
+        setPage(1);
+        setIsLoading(false);
+        setTotalPages(1);
         getMovies();
     }, [ country ]); 
 
@@ -58,8 +66,8 @@ function CountryModal( { country }) {
                 <h2> { `Movies from ${ country.NAME }:`} </h2>
                 <div className="row">
                     { movies.length > 0 ? ( 
-                        movies.map(( movie ) => (
-                            <div className="col-md-2 mb-4" key={ movie.id }>
+                        movies.map(( movie, index ) => (
+                            <div className="col-md-2 mb-4" key={`${movie.id}-${ index }`}>
                                 <div className="card h-100">
                                     <img
                                         src={ `https://image.tmdb.org/t/p/w500${ movie.poster_path }` }
