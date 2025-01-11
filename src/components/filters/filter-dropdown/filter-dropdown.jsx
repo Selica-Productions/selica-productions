@@ -8,7 +8,7 @@ function FilterDropdown({ type, options = [], onSelected }) {
           <Dropdown.Menu>
             {options.map( (option, index) => (
               <Dropdown.Item key={index} onClick={() => onSelected( option )}>
-                { type === "Genre" ? option.name : option}
+                { type === "Year" ? option : option.label }
               </Dropdown.Item>
             )
             )} 

@@ -140,14 +140,14 @@ export const getTrendingTVShows = async () => {
 };
 
 //--Get Sorted Movies--
-// export const getSortedMovies = async ( sortOption ) => {
-//   try {
-//     const response = await api.get
-//   } catch( error ) {
-//     console.error(error);
-//     throw new Error(
-//       "The movies could not be sorted. Please try again later. 😔🎬"
-//     );
-//   }
-// }
-//};
+export const getSortedMovies = async ( sortOption ) => {
+   try {
+    const response = await api.get(`discover/movie?sort_by=${ sortOption.value }`);
+    return response.data.results;
+   } catch( error ) {
+     console.error(error);
+     throw new Error(
+       "The movies could not be sorted. Please try again later. 😔🎬"
+     );
+  }
+};
