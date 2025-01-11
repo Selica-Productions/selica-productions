@@ -24,6 +24,13 @@ function CountryModal( { country }) {
         navigate(`/film/${ movieId }`);
     };
 
+    //-- Get poster path (if no poster available, set noPosterAvailable.webp)--
+    const getPosterSrc = ( posterPath ) => {
+        return posterPath 
+            ? `https://image.tmdb.org/t/p/w500${ posterPath }` 
+            : "/src/assets/images/noPosterAvailable.webp";
+    };
+
     const getMovies = async () => {
         if ( isLoading || page > totalPages ) return;
 
@@ -79,7 +86,7 @@ function CountryModal( { country }) {
                                     onClick={() => handleMovieClick(movie.id)}
                                 >
                                     <img
-                                        src={ `https://image.tmdb.org/t/p/w500${ movie.poster_path }` }
+                                        src= { getPosterSrc( movie.poster_path ) }
                                         className="card-img-top"
                                         alt={ movie.title }
                                     />
