@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   getPopularMovies,
-  loadFilmPages,
+  loadPopularFilmPages,
 } from "../../../service/moviesService";
 import { maxPages } from "../../../utils/constants";
 
@@ -28,7 +28,7 @@ function FilmsList({ search, movies }) {
     if (loading) return;
     try {
       setLoading(true);
-      const moreFilms = await loadFilmPages(page);
+      const moreFilms = await loadPopularFilmPages(page);
       setFilms([...films, ...moreFilms]);
       setPage(page + 1);
     } catch (e) {
