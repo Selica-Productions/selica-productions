@@ -1,0 +1,15 @@
+@import "/src/styles/variables.css";
+
+.clear-button {
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: gray;
+    color: white;
+}
+
+.clear-button:hover {
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: rgb(77, 72, 72);
+    color: white;
+}

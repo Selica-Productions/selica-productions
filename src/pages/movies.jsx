@@ -5,6 +5,7 @@ import FilmsList from '../components/films/films-list/films-list';
 import { YEARS, GENRES, sortOptions } from "../utils/constants"
 import { useEffect, useState } from "react";
 import { getMoviesByGenre, getMoviesByYear, getPopularMovies, getSortedMovies } from "../service/moviesService";
+import ClearButton from "../components/ui/clear-button/clear-button";
 
 function MoviesPage({ search }) {
   const [films, setFilms] = useState([]);
@@ -78,7 +79,7 @@ function MoviesPage({ search }) {
         <FilterDropdown type="Year" options={ YEARS } onSelected={( year ) => onSelectedYear( year )} />
         <FilterDropdown type="Genre" options={ GENRES } onSelected={( genre ) => onSelectedGenre( genre )}/>
         <FilterDropdown type="Sort" options={ sortOptions } onSelected={( sortOption ) =>  onSelectedSort( sortOption )}/>
-        <button className="clear-button" onClick = {() => onClearFilters() } > Clear </button>
+        <ClearButton onClear={ onClearFilters } />
       </div>
       <FilmsList movies = { filteredFilms } search={ search }/>
     </PageLayout>
