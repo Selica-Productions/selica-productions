@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getCountryMovies } from "../../service/moviesService";
 import "./country-modal.css"
-import { maxPages } from "/src/utils/constants.js"
 
 function CountryModal( { country }) {
     //-- State Movies --
@@ -11,12 +11,18 @@ function CountryModal( { country }) {
     const [ totalPages, setTotalPages ] = useState(1);
     const [ error, setError ] = useState( null );
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     // --Handle close button--
     const handleClose = () => {
         setIsClosing( true );
         setPage(1);
     }
+
+    // --Handle Movie Click-- (Navigate to film item)
+    const handleMovieClick = ( movieId ) => {
+        navigate(`/film/${ movieId }`);
+    };
 
     const getMovies = async () => {
         if ( isLoading || page > totalPages ) return;
@@ -68,7 +74,10 @@ function CountryModal( { country }) {
                     { movies.length > 0 ? ( 
                         movies.map(( movie, index ) => (
                             <div className="col-md-2 mb-4" key={`${movie.id}-${ index }`}>
-                                <div className="card h-100">
+                                <div className="card h-100"
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => handleMovieClick(movie.id)}
+                                >
                                     <img
                                         src={ `https://image.tmdb.org/t/p/w500${ movie.poster_path }` }
                                         className="card-img-top"
