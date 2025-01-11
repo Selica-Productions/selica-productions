@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCountryMovies } from "../../service/moviesService";
 import "./country-modal.css"
+import { getPosterSrc } from "../../utils/constants";
 
 function CountryModal( { country }) {
     //-- State Movies --
@@ -24,12 +25,6 @@ function CountryModal( { country }) {
         navigate(`/film/${ movieId }`);
     };
 
-    //-- Get poster path (if no poster available, set noPosterAvailable.webp)--
-    const getPosterSrc = ( posterPath ) => {
-        return posterPath 
-            ? `https://image.tmdb.org/t/p/w500${ posterPath }` 
-            : "/src/assets/images/noPosterAvailable.webp";
-    };
 
     const getMovies = async () => {
         if ( isLoading || page > totalPages ) return;

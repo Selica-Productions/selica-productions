@@ -4,7 +4,7 @@ import {
   getPopularMovies,
   loadPopularFilmPages,
 } from "../../../service/moviesService";
-import { maxPages } from "../../../utils/constants";
+import { getPosterSrc, maxPages } from "../../../utils/constants";
 
 function FilmsList({ search, movies }) {
   const [films, setFilms] = useState([]);
@@ -82,7 +82,7 @@ function FilmsList({ search, movies }) {
             <div className="col-md-3 mb-4" key={film.id}>
               <div className="card h-100">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                  src= { getPosterSrc( film.poster_path ) }
                   className="card-img-top"
                   alt={film.title}
                 />

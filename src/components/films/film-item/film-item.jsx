@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getFilmDetails } from "../../../service/moviesService";
+import { getPosterSrc } from './../../../utils/constants';
 
 function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
   const { id } = useParams();
@@ -44,7 +45,7 @@ function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
       <div className="row">
         <div className="col-md-4">
           <img
-            src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+            src= { getPosterSrc( film.poster_path ) }
             alt={film.title}
             className="img-fluid rounded"
           />

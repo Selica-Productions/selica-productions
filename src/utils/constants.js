@@ -43,4 +43,11 @@ export const sortOptions = [
     { value: "revenue.asc", label: "Revenue (low to high)" },
     { value: "original_title.asc", label: "Title (A-Z)" },
     { value: "original_title.desc", label: "Title (Z-A)" },
-  ];
+];
+
+//-- Get poster path (if no poster available, set noPosterAvailable.webp)--
+export const getPosterSrc = ( posterPath ) => {
+    return posterPath 
+        ? `https://image.tmdb.org/t/p/w500${ posterPath }` 
+        : "/src/assets/images/noPosterAvailable.webp";
+};
