@@ -16,8 +16,8 @@ function CountryModal( { country }) {
     useEffect( () => {
         const getMovies = async () => {
             try {
-                const moviesList = await getCountryMovies( country.ISO_A2 );
-                console.log( country.ISO_A2 )
+                const moviesList = await getCountryMovies( country.ISO_A2_EH );
+                console.log( country.ISO_A2_EH )
                 console.log( moviesList )
                 setMovies( moviesList );
                 setIsClosing( false );
