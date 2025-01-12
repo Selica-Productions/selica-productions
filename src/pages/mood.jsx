@@ -23,7 +23,8 @@ const MoodPage = ({ search }) => {
     setSelectedMood(name);
     try {
       const movies = await getMoviesByGenre(genreId);
-      setMovies(movies);
+      const limitMovies = movies.slice(0, 18);
+      setMovies(limitMovies);
       setError(null);
     } catch (err) {
       setError(err.message);

@@ -71,7 +71,7 @@ function CountryModal( { country }) {
                             <FilmCard 
                                 key={ movie.id }
                                 film={ movie }
-                                className="col-md-2"
+                                className="col-md-3"
                             />
                     ))
                     ) : (<p> No movies find </p>)

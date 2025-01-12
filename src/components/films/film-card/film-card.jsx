@@ -26,7 +26,7 @@ function FilmCard({ film, className="" }) {
                     <i className="fa-regular fa-circle-play"></i>
                   </div>
             </div>
-            <div className="card-body">
+            <div className="card-body d-flex flex-column justify-content-between ">
                 <h5 className="card-title">{film.title}</h5>
                 <p className="card-text">
                 { film.overview.length > 100
