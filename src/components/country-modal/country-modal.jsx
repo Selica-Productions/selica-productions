@@ -72,6 +72,7 @@ function CountryModal( { country }) {
                                 key={ movie.id }
                                 film={ movie }
                                 className="col-md-3"
+                                type="movie"
                             />
                     ))
                     ) : (<p> No movies find </p>)

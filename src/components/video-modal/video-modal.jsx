@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getTrailerMovies } from "../../service/moviesService";
 import "./video-modal.css";
 
-function VideoModal({ movieId } ) {
+function VideoModal({ type, id } ) {
     const [ trailer, setTrailer ] = useState([]); 
     const [ isClosing, setIsClosing ] = useState( false );
 
@@ -14,7 +14,7 @@ function VideoModal({ movieId } ) {
     useEffect(() => {
         const fetchTrailer = async () => {
           try {
-            const trailerMovies = await getTrailerMovies( movieId );
+            const trailerMovies = await getTrailerMovies( type, id );
             setTrailer( trailerMovies );
             if (trailerMovies && trailerMovies.length > 0) {
                 setTrailer( trailerMovies[0].key );  
@@ -25,7 +25,7 @@ function VideoModal({ movieId } ) {
         };
     
         fetchTrailer();
-      }, [ movieId ]);
+      }, [ id ]);
 
   return (
     <div className={`behind-modal ${ isClosing ? "close" : ""}`}>

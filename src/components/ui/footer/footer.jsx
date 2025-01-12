@@ -20,13 +20,16 @@ function Footer() {
           <div className="col-md-3 m-2">
             <h5>Follow Us</h5>
             <p>
-              <i className="bi bi-facebook"></i> Facebook
+              <i className="bi bi-facebook"></i> 
+              <a className="text-white" href="https://www.facebook.com/IronhackSpain/?locale=es_ES"> Facebook </a>
             </p>
             <p>
-              <i className="bi bi-twitter"></i> Twitter
+              <i className="bi bi-twitter"></i> 
+              <a className="text-white" href="https://x.com/ironhackspain"> Twitter </a>
             </p>
             <p>
-              <i className="bi bi-instagram"></i> Instagram
+              <i className="bi bi-instagram"></i> 
+              <a className="text-white" href="https://www.instagram.com/ironhackspain/"> Instagram </a>
             </p>
           </div>
         </div>

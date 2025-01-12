@@ -11,8 +11,7 @@ function FilmsList({ search, movies }) {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1); //Current page. Each page has 20 films.
   const [loading, setLoading] = useState(false);
-  const [ clickedMovieId, setClickedMovieId ] = useState( null);
-
+  
   //--Popular films (20 films) -> execute only once--
   const getPopulars = async () => {
     try {
@@ -43,11 +42,6 @@ function FilmsList({ search, movies }) {
     if (page <= maxPages && !loading) {
       getMoreFilms(page);
     }
-  };
-
-  // Handle is Clicked (Poster movie)
-  const handlePosterClicked = ( id ) => {
-    setClickedMovieId( id );
   };
 
   //--Searched Films--
@@ -89,8 +83,7 @@ function FilmsList({ search, movies }) {
               className="col-md-3" 
               key={ film.id } 
               film = { film } 
-              handlePosterClicked={ handlePosterClicked } 
-              clickedMovieId = { clickedMovieId } />
+              type="movie" />
           ))
         ) : (
           <p> No films found </p>

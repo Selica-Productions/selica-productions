@@ -64,6 +64,7 @@ const MoodPage = ({ search }) => {
             key={ movie.id }
             film={ movie }
             className="col-md-2"
+            type="movie"
           />
         ))}
       </div>

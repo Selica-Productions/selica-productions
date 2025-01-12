@@ -5,7 +5,7 @@ import VideoModal from "../../video-modal/video-modal";
 import { useState } from "react";
 import "./film-card.css";
 
-function FilmCard({ film, className="" }) {
+function FilmCard({ film, className="", type="" }) {
   const [ isClicked, setIsClicked ] = useState( false );
 
   // Handle poster clicked
@@ -28,16 +28,18 @@ function FilmCard({ film, className="" }) {
             </div>
             <div className="card-body d-flex flex-column justify-content-between ">
                 <h5 className="card-title">{film.title}</h5>
-                <p className="card-text">
-                { film.overview.length > 100
-                    ? film.overview.substring(0, 100) + "..."
-                    : film.overview}
-                </p>
+                { type !== "tv" && 
+                  <p className="card-text">
+                  { film.overview.length > 100
+                      ? film.overview.substring(0, 100) + "..."
+                      : film.overview}
+                  </p>
+                }
                 <Link to={`/film/${film.id}`} >
                     <ReadMoreButton text= {"Read More"} />
                 </Link>
             </div>
-            { isClicked  && <VideoModal movieId={ film.id } />}
+            { isClicked  && <VideoModal type = {type} id={ film.id } />}
         </div>
     </div>
   )

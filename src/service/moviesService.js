@@ -189,9 +189,9 @@ export const getSortedMovies = async (sortOption) => {
 
 
 //--Get Trailer Movies--
-export const getTrailerMovies = async ( movieId ) => {
+export const getTrailerMovies = async ( type, id ) => {
   try {
-    const response = await api.get(`/movie/${ movieId }/videos?language=en-US`);
+    const response = await api.get(`/${ type }/${ id }/videos`);
     return response.data.results;
   } catch (error) {
     console.error("Error fetching upcoming movies:", error);
@@ -200,3 +200,4 @@ export const getTrailerMovies = async ( movieId ) => {
     );
   }
 };
+
