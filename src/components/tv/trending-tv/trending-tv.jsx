@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTrendingTVShows } from "../../../service/moviesService";
+import { getTrendingTVShows, getTrailerMovies } from "../../../service/moviesService";
 import { Link } from "react-router-dom";
 import ReadMoreButton from './../../ui/read-more-button/read-more-button';
 
@@ -19,6 +19,8 @@ const TrendingTV = () => {
     fetchTrendingTV();
   }, []);
 
+
+
   return (
     <div className="container mt-5">
       <hr className="my-4" />
@@ -27,6 +29,7 @@ const TrendingTV = () => {
         {trendingShows.map((show) => (
           <div className="col-md-2 mb-3" key={show.id}>
             <div className="card border-0 shadow-sm h-100">
+              <div></div>
               <img
                 src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
                 className="card-img-top h-75"

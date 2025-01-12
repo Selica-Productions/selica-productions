@@ -6,12 +6,15 @@ import {
 } from "../../../service/moviesService";
 import { getPosterSrc, maxPages } from "../../../utils/constants";
 import ReadMoreButton from "../../ui/read-more-button/read-more-button";
+import "./film-list.css";
+import VideoModal from "../../video-modal/video-modal";
 
 function FilmsList({ search, movies }) {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1); //Current page. Each page has 20 films.
   const [loading, setLoading] = useState(false);
+  const [ clickedMovieId, setClickedMovieId ] = useState( null);
 
   //--Popular films (20 films) -> execute only once--
   const getPopulars = async () => {
@@ -43,6 +46,11 @@ function FilmsList({ search, movies }) {
     if (page <= maxPages && !loading) {
       getMoreFilms(page);
     }
+  };
+
+  // Handle is Clicked (Poster movie)
+  const handlePosterClicked = ( id ) => {
+    setClickedMovieId( id );
   };
 
   //--Searched Films--
@@ -82,11 +90,16 @@ function FilmsList({ search, movies }) {
           searchedFilms.map((film) => (
             <div className="col-md-3 mb-4" key={film.id}>
               <div className="card h-100">
+              <div className="img-container" onClick={ () => handlePosterClicked( film.id ) }>
                 <img
-                  src= { getPosterSrc( film.poster_path ) }
-                  className="card-img-top"
-                  alt={film.title}
-                />
+                    src= { getPosterSrc( film.poster_path ) }
+                    className="card-img-top poster-img"
+                    alt={film.title}
+                  />
+                <div className="play-icon">
+                  <i className="fa-regular fa-circle-play"></i>
+                </div>
+              </div>
                 <div className="card-body">
                   <h5 className="card-title">{film.title}</h5>
                   <p className="card-text">
@@ -99,11 +112,13 @@ function FilmsList({ search, movies }) {
                   </Link>
                 </div>
               </div>
+              { clickedMovieId === film.id  && <VideoModal movieId={film.id} />}
             </div>
           ))
         ) : (
           <p> No films found </p>
-        )}
+        )
+        }
       </div>
       <div className="d-flex justify-content-center ">
         <button

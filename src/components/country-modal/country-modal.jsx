@@ -66,7 +66,7 @@ function CountryModal( { country }) {
     <div className={`behind-modal ${ isClosing ? "close" : ""}`}>
         <div className="modal-country-container">
             <div className="content-movies row d-flex mt-3 gap-4">
-            <div>
+                <div>
                     <button className="close-style" onClick={ handleClose }>
                         <i className="fa fa-window-close" aria-hidden="true"></i>
                     </button>

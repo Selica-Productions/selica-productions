@@ -186,3 +186,17 @@ export const getSortedMovies = async (sortOption) => {
     );
   }
 };
+
+
+//--Get Trailer Movies--
+export const getTrailerMovies = async ( movieId ) => {
+  try {
+    const response = await api.get(`/movie/${ movieId }/videos?language=en-US`);
+    return response.data.results;
+  } catch (error) {
+    console.error("Error fetching upcoming movies:", error);
+    throw new Error(
+      "Could not fetch Trailer movies. Please try again later. 😔🎬"
+    );
+  }
+};

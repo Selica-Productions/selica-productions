@@ -1,0 +1,25 @@
+.img-container {
+  position: relative;
+}
+
+/* Play icon */
+.play-icon {
+  position: absolute; 
+  /* Center the icon */
+  top: 50%;  
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  font-size: 4rem; 
+  color: white;
+}
+
+/* Hover -> (dark img) */
+.poster-img:hover {
+  filter: brightness(0.7);
+  cursor: pointer;
+}
+
+.play-icon:hover {
+  cursor: pointer;
+}
+
