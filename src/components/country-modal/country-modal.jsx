@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getCountryMovies } from "../../service/moviesService";
 import "./country-modal.css"
-import { getPosterSrc } from "../../utils/constants";
+import FilmCard from "../films/film-card/film-card";
 
 function CountryModal( { country }) {
     //-- State Movies --
@@ -12,18 +11,12 @@ function CountryModal( { country }) {
     const [ totalPages, setTotalPages ] = useState(1);
     const [ error, setError ] = useState( null );
     const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
 
     // --Handle close button--
     const handleClose = () => {
         setIsClosing( true );
         setPage(1);
     }
-
-    // --Handle Movie Click-- (Navigate to film item)
-    const handleMovieClick = ( movieId ) => {
-        navigate(`/film/${ movieId }`);
-    };
 
 
     const getMovies = async () => {
@@ -74,38 +67,18 @@ function CountryModal( { country }) {
                 <h2> { `Movies from ${ country.NAME }:`} </h2>
                 <div className="row">
                     { movies.length > 0 ? ( 
-                        movies.map(( movie, index ) => (
-                            <div className="col-md-2 mb-4" key={`${movie.id}-${ index }`}>
-                                <div className="card h-100"
-                                    style={{ cursor: "pointer" }}
-                                    onClick={() => handleMovieClick(movie.id)}
-                                >
-                                    <img
-                                        src= { getPosterSrc( movie.poster_path ) }
-                                        className="card-img-top"
-                                        alt={ movie.title }
-                                    />
-                                    <div className="card-body">
-                                        <h5 className="movie-title">
-                                            { movie.title.length > 20 
-                                                ? `${ movie.title.substring(0, 20) }...`
-                                                : movie.title
-                                            }
-                                        </h5>
-                                        <p className="movie-text">
-                                        { movie.overview
-                                            ? `${ movie.overview.substring(0, 50)}...`
-                                            : "No description available." }
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                        movies.map(( movie ) => (
+                            <FilmCard 
+                                key={ movie.id }
+                                film={ movie }
+                                className="col-md-2"
+                            />
                     ))
                     ) : (<p> No movies find </p>)
                     }
                     { page < totalPages  && (
-                        <div className="d-flex justify-content-center ">
-                            <button type="button" className="btn btn-secondary" onClick = { handleLoadMore }>Load More </button>
+                        <div className="d-flex justify-content-center mb-4 ">
+                            <button type="button" className="btn btn-secondary" onClick = { handleLoadMore }> Load More </button>
                         </div>
                     )
                     }

@@ -4,10 +4,9 @@ import {
   getPopularMovies,
   loadPopularFilmPages,
 } from "../../../service/moviesService";
-import { getPosterSrc, maxPages } from "../../../utils/constants";
-import ReadMoreButton from "../../ui/read-more-button/read-more-button";
+import { maxPages } from "../../../utils/constants";
 import "./film-list.css";
-import VideoModal from "../../video-modal/video-modal";
+import FilmCard from './../film-card/film-card';
 
 function FilmsList({ search, movies }) {
   const [films, setFilms] = useState([]);
@@ -88,32 +87,12 @@ function FilmsList({ search, movies }) {
       <div className="row">
         {searchedFilms.length > 0 ? (
           searchedFilms.map((film) => (
-            <div className="col-md-3 mb-4" key={film.id}>
-              <div className="card h-100">
-              <div className="img-container" onClick={ () => handlePosterClicked( film.id ) }>
-                <img
-                    src= { getPosterSrc( film.poster_path ) }
-                    className="card-img-top poster-img"
-                    alt={film.title}
-                  />
-                <div className="play-icon">
-                  <i className="fa-regular fa-circle-play"></i>
-                </div>
-              </div>
-                <div className="card-body">
-                  <h5 className="card-title">{film.title}</h5>
-                  <p className="card-text">
-                    {film.overview.length > 100
-                      ? film.overview.substring(0, 100) + "..."
-                      : film.overview}
-                  </p>
-                  <Link to={`/film/${film.id}`} >
-                    <ReadMoreButton text= {"Read More"} />
-                  </Link>
-                </div>
-              </div>
-              { clickedMovieId === film.id  && <VideoModal movieId={film.id} />}
-            </div>
+            <FilmCard  
+              className="col-md-3" 
+              key={ film.id } 
+              film = { film } 
+              handlePosterClicked={ handlePosterClicked } 
+              clickedMovieId = { clickedMovieId } />
           ))
         ) : (
           <p> No films found </p>

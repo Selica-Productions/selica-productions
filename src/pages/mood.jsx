@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMoviesByGenre } from "../service/moviesService";
 import PageLayout from './../components/layouts/page-layout/page-layout';
+import FilmCard from "../components/films/film-card/film-card";
 
 const emojiGenres = {
   "😀": { genreId: 35, name: "Comedy" },
@@ -16,8 +17,7 @@ const MoodPage = ({ search }) => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [selectedMood, setSelectedMood] = useState("");
-  const navigate = useNavigate();
-
+  
   const handleMoodClick = async (emoji) => {
     const { genreId, name } = emojiGenres[emoji];
     setSelectedMood(name);
@@ -36,9 +36,7 @@ const MoodPage = ({ search }) => {
     (film) => !search || film.title.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleCardClick = (movieId) => {
-    navigate(`/film/${movieId}`);
-  };
+  
 
   return (
     <PageLayout className="py-5">
@@ -61,27 +59,11 @@ const MoodPage = ({ search }) => {
       {error && <p className="text-danger">{error}</p>}
       <div className="row">
         {searchedMovies.map((movie) => (
-          <div className="col-md-2 mb-4" key={movie.id}>
-            <div
-              className="card h-100"
-              style={{ cursor: "pointer" }}
-              onClick={() => handleCardClick(movie.id)}
-            >
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                className="card-img-top"
-                alt={movie.title}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
-                <p className="card-text">
-                  {movie.overview
-                    ? `${movie.overview.substring(0, 50)}...`
-                    : "No description available."}
-                </p>
-              </div>
-            </div>
-          </div>
+          <FilmCard
+            key={ movie.id }
+            film={ movie }
+            className="col-md-2"
+          />
         ))}
       </div>
     </PageLayout>
