@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
   getPopularMovies,
   loadPopularFilmPages,
 } from "../../../service/moviesService";
 import { maxPages } from "../../../utils/constants";
-import "./film-list.css";
 import FilmCard from './../film-card/film-card';
 
 function FilmsList({ search, movies }) {

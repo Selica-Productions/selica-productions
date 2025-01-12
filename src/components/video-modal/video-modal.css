@@ -15,13 +15,11 @@
 /* Modal container*/
 .modal-video-container {
     position: relative;
-    width: 70%;
-    max-height: 80%;
-    margin: auto;
-    padding: 0 30px;
+    width: 50%;
     background-color: white;
     border-radius: 2px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
 }
 
 .close-style {
@@ -72,4 +70,11 @@
   
   .close {
     animation: close 0.3s ease-in forwards;
+  }
+
+  h2 {
+    font-family: "Major Mono Display", serif;
+    color: var(--dark-blue);
+    font-weight: bold;
+    text-align: center;
   }

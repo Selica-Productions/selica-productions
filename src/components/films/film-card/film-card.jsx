@@ -3,6 +3,7 @@ import ReadMoreButton from "../../ui/read-more-button/read-more-button";
 import { getPosterSrc } from "../../../utils/constants";
 import VideoModal from "../../video-modal/video-modal";
 import { useState } from "react";
+import "./film-card.css";
 
 function FilmCard({ film, className="" }) {
   const [ isClicked, setIsClicked ] = useState( false );
@@ -21,9 +22,9 @@ function FilmCard({ film, className="" }) {
                     className="card-img-top poster-img"
                     alt={film.title}
                   />
-                <div className="play-icon">
-                  <i className="fa-regular fa-circle-play"></i>
-                </div>
+                  <div className="play-icon">
+                    <i className="fa-regular fa-circle-play"></i>
+                  </div>
             </div>
             <div className="card-body">
                 <h5 className="card-title">{film.title}</h5>
