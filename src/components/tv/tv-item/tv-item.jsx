@@ -45,7 +45,7 @@ function TVItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
       <div className="row">
         <div className="col-md-4">
           <img
-            src={getPosterSrc(show.poster_path)}
+            src={ getPosterSrc(show.poster_path) }
             alt={show.name}
             className="img-fluid rounded"
           />
@@ -64,11 +64,12 @@ function TVItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
           <p>
             <i className="bi bi-calendar-event me-2 m-2"></i>
             <strong>Release Date:</strong>{" "}
-            {new Date(show.first_air_date).getFullYear()}
+            { new Date(show.first_air_date).getFullYear() }
           </p>
           <p>
             <i className="bi bi-translate me-2 m-2"></i>
-            <strong>Language:</strong> {show.original_language.toUpperCase()}
+            <strong>Language:</strong> 
+            {show.original_language.toUpperCase()}
           </p>
           <p>
             <i className="bi bi-film me-2 m-2"></i>

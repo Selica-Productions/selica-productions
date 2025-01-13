@@ -29,8 +29,8 @@ const TrendingTV = () => {
       <div className="row">
         {trendingShows.map((show) => (
           <FilmCard 
-            key={ show.id }
-            film={ show }
+            key={show.id}
+            film={show}
             className="col-md-2"
             type="tv"
           />

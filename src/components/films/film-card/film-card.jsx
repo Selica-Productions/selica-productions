@@ -35,7 +35,7 @@ function FilmCard({ film, className="", type="" }) {
                       : film.overview}
                   </p>
                 }
-                <Link to={`/film/${film.id}`} >
+                <Link to={`/${type === "tv" ? "tv" : "film"}/${film.id}`} >
                     <ReadMoreButton text= {"Read More"} />
                 </Link>
             </div>

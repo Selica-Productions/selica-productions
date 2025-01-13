@@ -40,3 +40,40 @@ body {
 .navbar-brand {
   font-size: 1.5rem;
 }
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    display: none; 
+    flex-direction: column; 
+    gap: 10px;
+  }
+
+  .navbar-toggler {
+    display: block; 
+  }
+
+  .navbar-toggler.collapsed + .navbar-nav {
+    display: flex; 
+  }
+}
+
+
+.navbar-toggler {
+  display: none; 
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block; 
+  }
+
+  .navbar-nav.collapse {
+    display: flex; 
+    flex-direction: column;
+    width: 100%; 
+  }
+}
