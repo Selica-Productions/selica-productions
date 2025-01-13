@@ -173,12 +173,21 @@ export const getTVShowDetails = async (id) => {
 };
 
 //--Get Sorted Movies--
-export const getSortedMovies = async (sortOption) => {
+export const getSortedMovies = async (sortOption, genre=null, year=null) => {
   try {
-    const response = await api.get(
-      `discover/movie?sort_by=${sortOption.value}`
-    );
+    let url = `/discover/movie?sort_by=${sortOption.value}`;
+
+    if(genre) {
+      url += `&with_genres=${genre.id}`;
+    }
+
+    if (year) {
+      url += `&primary_release_year=${year}`;
+    }
+
+    const response = await api.get(url);
     return response.data.results;
+    
   } catch (error) {
     console.error(error);
     throw new Error(

@@ -10,13 +10,16 @@ import { ClearButton } from "../components/ui";
 function MoviesPage({ search }) {
   const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
-  const [filteredFilms, setFilteredFilms] = useState([])
+  const [filteredFilms, setFilteredFilms] = useState([]);
+  const [genre, setGenre] = useState(null);
+  const [year, setYear] = useState(null);
   
   //--Films by Genre--
   const onSelectedGenre = async ( genre ) => {
     try {
       const movies = await getMoviesByGenre( genre.id );
       setFilteredFilms( movies );
+      setGenre(genre);
 
     } catch (err) {
       setError(err.message);
@@ -30,7 +33,7 @@ function MoviesPage({ search }) {
     try {
       const movies = await getMoviesByYear( year );
       setFilteredFilms( movies );
-
+      setYear(year);
     } catch (err) {
       setError(err.message);
       console.log( error );
@@ -39,9 +42,9 @@ function MoviesPage({ search }) {
   };
 
   //-- Sort movies --
-  const onSelectedSort = async ( sortOption ) => {
+  const onSelectedSort = async ( sortOption, genre, year ) => {
     try {
-      const movies = await getSortedMovies( sortOption );
+      const movies = await getSortedMovies( sortOption, genre, year );
       setFilteredFilms( movies );
 
     } catch (err) {
@@ -78,7 +81,7 @@ function MoviesPage({ search }) {
       <div className="d-flex gap-3">
         <FilterDropdown type="Year" options={ YEARS } onSelected={( year ) => onSelectedYear( year )} />
         <FilterDropdown type="Genre" options={ GENRES } onSelected={( genre ) => onSelectedGenre( genre )}/>
-        <FilterDropdown type="Sort" options={ sortOptions } onSelected={( sortOption ) =>  onSelectedSort( sortOption )}/>
+        <FilterDropdown type="Sort" options={ sortOptions } onSelected={( sortOption ) =>  onSelectedSort( sortOption, genre, year )}/>
         <ClearButton onClear={ onClearFilters } />
       </div>
       <FilmsList movies = { filteredFilms } search={ search }/>
