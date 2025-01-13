@@ -31,15 +31,17 @@ function Carousel({ page }) {
 
     // Clear the interval when the component unmount:
     return () => clearInterval(interval);
-  }, [activeIndex, films.length]);
+  }, [films.length]);
 
   //--Handle Next and Previous Buttons--
   const handlePrevious = () => {
     setActiveIndex((index) => (index > 0 ? index - 1 : films.length - 1));
+    console.log(activeIndex)
   };
 
   const handleNext = () => {
     setActiveIndex((index) => (index === films.length - 1 ? 0 : index + 1));
+    console.log(activeIndex)
   };
 
   //--Show error:--
@@ -50,7 +52,7 @@ function Carousel({ page }) {
   return (
     <div className="carousel-container m-0 p-0">
       <div
-        id="carouselExampleCaptions"
+        id={`carousel-${page}`}
         className="carousel slide"
         data-bs-ride="carousel"
       >
@@ -59,7 +61,7 @@ function Carousel({ page }) {
             <button
               key={index}
               type="button"
-              data-bs-target="#carouselExampleCaptions"
+              data-bs-target={`carousel-${page}`}
               data-bs-slide-to={index}
               className={index === activeIndex ? "active" : ""}
               aria-current={index === activeIndex ? "true" : "false"}
@@ -97,9 +99,9 @@ function Carousel({ page }) {
         <button
           className="carousel-control-prev"
           type="button"
-          data-bs-target="#carouselExampleCaptions"
+          data-bs-target={`carousel-${page}`}
           data-bs-slide="prev"
-          onClick={handlePrevious}
+          onClick={handleNext}
         >
           <span
             className="carousel-control-prev-icon"
@@ -110,9 +112,9 @@ function Carousel({ page }) {
         <button
           className="carousel-control-next"
           type="button"
-          data-bs-target="#carouselExampleCaptions"
+          data-bs-target={`carousel-${page}`}
           data-bs-slide="next"
-          onClick={handleNext}
+          onClick={handlePrevious}
         >
           <span
             className="carousel-control-next-icon"
