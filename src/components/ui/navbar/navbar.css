@@ -41,39 +41,40 @@ body {
   font-size: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  .navbar-nav {
-    display: none; 
-    flex-direction: column; 
-    gap: 10px;
-  }
-
-  .navbar-toggler {
-    display: block; 
-  }
-
-  .navbar-toggler.collapsed + .navbar-nav {
-    display: flex; 
+/* -- Responsive Design: MEDIA QUERIES -- */
+@media (max-width: 1003px) {
+  .trending {
+    display: none;
   }
 }
 
-
-.navbar-toggler {
-  display: none; 
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+@media (max-width: 991px) {
+  .navbar-container {
+    margin-bottom: 3rem;
+  }
 }
 
-
-@media (max-width: 768px) {
-  .navbar-toggler {
-    display: block; 
+@media (max-width: 485px ) {
+  .navbar-container {
+    margin-bottom: 3rem;
   }
 
-  .navbar-nav.collapse {
-    display: flex; 
-    flex-direction: column;
+  .logo {
+    width: 60px;
+  }
+
+  .navbar-toggler {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+  }
+
+  .navbar-toggler-icon {
     width: 100%; 
+    height: 100%;
+  }
+
+  .navbar-brand {
+    font-size: 0.8rem;
   }
 }

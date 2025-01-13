@@ -44,7 +44,7 @@ function VideoModal({ type, id } ) {
                             width="560"
                             height="315"
                             src={`https://www.youtube.com/embed/${ trailer }`}
-                            frameBorder="0"
+                            className="iframe-container"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             title="Movie Trailer"

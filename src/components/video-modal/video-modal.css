@@ -78,3 +78,8 @@
     font-weight: bold;
     text-align: center;
   }
+
+  .iframe-container {
+    position: relative;
+    width: 90%;
+  }
