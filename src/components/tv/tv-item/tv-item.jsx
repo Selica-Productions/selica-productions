@@ -81,6 +81,11 @@ function TVItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
             <strong>Genres:</strong>{" "}
             {show.genres.map((genre) => genre.name).join(", ")}
           </p>
+          <p>
+            <i className="bi bi-tags me-2 m-2"></i>
+            <strong>Rating:</strong>{" "}
+            {`${show.vote_average.toFixed(2)} ${show.vote_average > 7.5 ? "🔥" : "💩"}`}
+          </p>
           <button
             onClick={handleToggleWatchlist}
             className={`btn m-4 ${

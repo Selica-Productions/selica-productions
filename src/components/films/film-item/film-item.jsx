@@ -83,6 +83,11 @@ function FilmItem({ addToWatchlist, removeFromWatchlist, watchlist }) {
             <i className="bi bi-clock me-2 m-2"></i>
             <strong>Runtime:</strong> {film.runtime} minutes
           </p>
+          <p>
+            <i className="bi bi-tags me-2 m-2"></i>
+            <strong>Rating:</strong>{" "}
+            {`${film.vote_average.toFixed(2)} ${film.vote_average > 7.5 ? "🔥" : "💩"}`}
+          </p>
           <button
             onClick={handleToggleWatchlist}
             className="btn m-4" 
