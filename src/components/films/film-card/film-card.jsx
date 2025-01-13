@@ -18,13 +18,16 @@ function FilmCard({ film, className="", type="" }) {
         <div className="card h-100">
             <div className="img-container" onClick={ () => handlePosterClicked() }>
                 <img
-                    src= { getPosterSrc( film.poster_path ) }
-                    className="card-img-top poster-img"
+                    src= {getPosterSrc(film.poster_path)}
+                    className={`card-img-top ${film.poster_path ? "poster-img" : ""}`}
                     alt={film.title}
                   />
+                { film.poster_path && (
                   <div className="play-icon">
                     <i className="fa-regular fa-circle-play"></i>
                   </div>
+                )}
+                  
             </div>
             <div className="card-body d-flex flex-column justify-content-between ">
                 <h5 className="card-title">{film.title}</h5>
