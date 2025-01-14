@@ -3,6 +3,7 @@ import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
 import axios from "axios";
 import CountryModal from "../country-modal/country-modal";
+import "/src/styles/animations.css"
 
 function CountryMap() {
   // --Ref-- -> div element that will contain the map
@@ -31,8 +32,18 @@ function CountryMap() {
     .then( (response) => {
       // --Set the countries--:
       const data = response.data;
+
+      function style() {
+        return {
+          fillColor: "rgb(109, 187, 201)", 
+          weight: 1,
+          color: "#000000", 
+          dashArray: "2",
+          fillOpacity: 0.7,
+        };
+      }
       // --Add the countries to the map:--:
-      const countriesLayer = L.geoJson( data ).addTo( map );
+      const countriesLayer = L.geoJson( data, { style } ).addTo( map );
 
       // --Add the event click to each country ( layer )--:
       countriesLayer.eachLayer( (layer) => {
@@ -41,8 +52,22 @@ function CountryMap() {
           const country = layer.feature.properties;
           setSelectedCountry( country );
         });
+
+        //-- Hover on Country--
+        layer.on("mouseover", () => {
+          layer.setStyle({
+            fillColor: " rgb(49, 149, 167)", 
+          });
+        });
+
+        //-- Reset the style when mouse leaves the country--
+        layer.on("mouseout", () => {
+          countriesLayer.resetStyle(layer); 
+        });
       })
     })
+
+
     .catch( (error) => {
       console.log( "Error loading GeoJson -> ", error );
     });
@@ -55,13 +80,26 @@ function CountryMap() {
   }, [] );
 
   return (
-    <div className="mx-5 my-3">
-        <div className="d-flex flex-column gap-4">
-          <h1>Countries Map</h1>
-          <div id="map" style={{ height: "600px", width: "100%" }} ref={ mapRef }></div>
-        </div>
-        { selectedCountry && <CountryModal country = { selectedCountry }/> }
+    <div className="container my-5">
+    <div className="d-flex flex-column align-items-center gap-4">
+      <h1 className="text-center">
+        🌍 Discover Movies by Country 🗺️
+      </h1>
+      <p className="typing lead text-center text-muted">
+        Click on any country on the map to discover the films produced there.
+        Explore the unique cinematic culture of each region!
+      </p>
+
+      <div 
+        id="map" 
+        style={{ height: "600px", width: "100%" }} 
+        ref={mapRef}
+        className="rounded-3 shadow-lg"
+      ></div>
+
+      {selectedCountry && <CountryModal country={selectedCountry} />}
     </div>
+  </div>
   )
 }
 
