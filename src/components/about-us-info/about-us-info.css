@@ -11,8 +11,10 @@
   font-weight: 300;
 }
 
-span {
+.brand-name {
   color: var(--light-blue);
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #cacaca;
 }
 
 /*--CONTENT--*/

@@ -3,9 +3,9 @@ import "./about-us-info.css"
 
 function AboutUsInfo() {
   return (
-    <section className="about-us-section">
+    <section>
       <div className="container">
-        <div className="header pb-4">
+        <div className="pb-4">
           <h1 className="title">
             Welcome to <span>Selica Productions</span> 🎬🍿
           </h1>
@@ -15,7 +15,7 @@ function AboutUsInfo() {
           <img className="logo" src="/src/assets/images/logo.webp" alt="logo"></img>
           <h2 className="subtitle"> Journey Into the Heart of Cinema </h2>
           <p>
-            We are <strong>Selena</strong> and <strong>Jessica</strong>, the creators of <span className="highlight">Selica Productions</span>, an interactive platform designed for movie lovers. As students at <strong>Ironhack</strong>, we merged our passions for technology and cinema to bring you an innovative and fun movie discovery experience.
+            We are <strong>Selena</strong> and <strong>Jessica</strong>, the creators of <span className="brand-name">Selica Productions</span>, an interactive platform designed for movie lovers. As students at <strong>Ironhack</strong>, we merged our passions for technology and cinema to bring you an innovative and fun movie discovery experience.
           </p>
           
           <div className="video-container">
