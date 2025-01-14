@@ -77,7 +77,8 @@ function MoviesPage({ search }) {
   }, []); 
 
   return (
-    <PageLayout>
+    <PageLayout className="appear">
+      <h1 className="pb-5"> 🍿 Filter, Discover and Enjoy 🍿 </h1>
       <div className="d-flex gap-3">
         <FilterDropdown type="Year" options={ YEARS } onSelected={( year ) => onSelectedYear( year )} />
         <FilterDropdown type="Genre" options={ GENRES } onSelected={( genre ) => onSelectedGenre( genre )}/>

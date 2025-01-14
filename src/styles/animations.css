@@ -1,13 +1,26 @@
 @import "/src/styles/variables.css";
 
+.typing-container {
+    display: flex;
+    justify-content: center;
+  }
+
 /* Typing class */
 .typing {
   font-size: 24px;
+  text-align: center;
   white-space: nowrap; /* All the text appears in one line */
   overflow: hidden; /* Hide unwritten text */
   border-right: 3px solid var(--light-blue); /* Cursor */
   width: 0; /* First, the text is not visible */
   animation: typing 5s steps(40) 1s forwards, blink 0.75s step-end infinite; /* Typing and blink (cursor) animations */
+  }
+
+  /* Appear class */
+  .appear {
+    overflow: hidden;
+    opacity: 0; 
+    animation: appear 2s forwards;
   }
   
   /*-- ANIMATIONS--*/
@@ -28,5 +41,16 @@
     }
     100% {
       border-color: transparent;
+    }
+  }
+
+  
+  /* Appear */
+  @keyframes appear {
+    0% {
+      opacity: 0; 
+    }
+    100% {
+      opacity: 1;
     }
   }

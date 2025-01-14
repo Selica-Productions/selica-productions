@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { getMoviesByGenre } from "../service/moviesService";
 import PageLayout from './../components/layouts/page-layout/page-layout';
 import FilmCard from "../components/films/film-card/film-card";
+import "/src/styles/animations.css"
 
 const emojiGenres = {
   "😀": { genreId: 35, name: "Comedy" },
@@ -41,8 +41,8 @@ const MoodPage = ({ search }) => {
 
   return (
     <PageLayout className="py-5">
-      <h1 className="py-5">How are you feeling today?</h1>
-      <div className="my-4 text-center" style={{ fontSize: "4rem"}}>
+      <h1 className="appear py-5">How are you feeling today?</h1>
+      <div className="appear my-4 text-center" style={{ fontSize: "4rem"}}>
         {Object.keys(emojiGenres).map((emoji) => (
           <span
             key={emoji}

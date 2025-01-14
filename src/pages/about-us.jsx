@@ -3,7 +3,7 @@ import { PageLayout } from "../components/layouts";
 
 function AboutUsPage() {
   return (
-    <PageLayout >
+    <PageLayout>
       <AboutUsInfo />
     </PageLayout>
   )

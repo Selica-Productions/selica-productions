@@ -3,7 +3,7 @@ import PageLayout from './../components/layouts/page-layout/page-layout';
 
 function MapPage() {
   return (
-    <PageLayout>
+    <PageLayout className="appear">
       <CountryMap />
     </PageLayout>
   )

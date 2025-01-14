@@ -21,6 +21,12 @@ main {
 h1 {
   font-family: "Major Mono Display", serif;
   color: var(--dark-blue);
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

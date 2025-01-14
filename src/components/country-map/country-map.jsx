@@ -80,7 +80,7 @@ function CountryMap() {
   }, [] );
 
   return (
-    <div className="container my-5">
+    <div className="container my-3">
     <div className="d-flex flex-column align-items-center gap-4">
       <h1 className="text-center">
         🌍 Discover Movies by Country 🗺️

@@ -7,7 +7,7 @@ import TrendingTV from "../components/tv/trending-tv/trending-tv";
 
 function HomePage({ search }) {
   return (
-    <PageLayout>
+    <PageLayout className="appear">
       <div>
         <h2 className="mb-4">🔥🎬 Upcoming Movies</h2>
       </div>
