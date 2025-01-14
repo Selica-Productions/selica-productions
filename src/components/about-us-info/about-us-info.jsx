@@ -37,7 +37,7 @@ function AboutUsInfo() {
               <div className="feature-item">
                 <i className="fas fa-search"></i>
                 <h3>Search & Filters</h3>
-                <p>Find movies by title or apply filters like genre, rating, or release year to refine your results. 🔍</p>
+                <p>Find movies by title or apply filters like genre, rating, or release year 🔍</p>
               </div>
             </Link>
 
@@ -46,7 +46,7 @@ function AboutUsInfo() {
                 <i className="fas fa-sort"></i>
                 <h3>Sort Movies</h3>
                 <p>
-                  Organize movies by popularity, rating, release date, revenue or title for a tailored experience. 📊
+                  Organize movies by popularity, rating, release date, revenue or title 📊
                 </p>
               </div>
             </Link>
