@@ -7,8 +7,6 @@
 
 /* Typing class */
 .typing {
-  font-size: 24px;
-  text-align: center;
   white-space: nowrap; /* All the text appears in one line */
   overflow: hidden; /* Hide unwritten text */
   border-right: 3px solid var(--light-blue); /* Cursor */

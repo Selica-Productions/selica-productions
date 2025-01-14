@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import axios from "axios";
 import CountryModal from "../country-modal/country-modal";
 import "/src/styles/animations.css"
+import "./country-map.css"
 
 function CountryMap() {
   // --Ref-- -> div element that will contain the map
@@ -85,7 +86,7 @@ function CountryMap() {
       <h1 className="text-center">
         🌍 Discover Movies by Country 🗺️
       </h1>
-      <p className="typing lead text-center text-muted">
+      <p className="typing text-map lead text-center text-muted">
         Click on any country on the map to discover the films produced there.
         Explore the unique cinematic culture of each region!
       </p>
