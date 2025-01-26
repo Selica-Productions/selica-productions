@@ -1,0 +1,16 @@
+/*--FEATURES--*/
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 30px;
+    margin-top: 40px;
+    justify-items: center;
+    justify-content: center;
+}
+
+/*--MEDIA QUERIES--*/
+@media (max-width: 900px) {
+    .features {
+      grid-template-columns: 1fr;
+    }
+}

@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import "./about-us-info.css"
+import FeaturesList from "../features/features-list/features-list";
+import FeatureCard from "../features/feature-card/feature-card";
+import SocialNetwork from "../social-network/social-network";
+import PageContainer from "../ui/page-container/page-container"
 
 function AboutUsInfo() {
   return (
@@ -11,7 +15,7 @@ function AboutUsInfo() {
           </h1>
         </div>
 
-        <div className="content pt-3 d-flex flex-column gap-3 justify-content-center align-items-center">
+        <PageContainer>
           <img className="logo" src="/src/assets/images/logo.webp" alt="logo"></img>
           <h2 className="subtitle"> Journey Into the Heart of Cinema </h2>
           <p>
@@ -24,57 +28,49 @@ function AboutUsInfo() {
             </video>
           </div>
 
-          <div className="features">
+          <FeaturesList>
             <Link to="/watchlist">
-              <div className="feature-item">
-                <i className="fas fa-video"></i>
-                <h3>Save Movies to Your Watchlist</h3>
-                <p>Keep track of your favorite films with ease. 🎥</p>
-              </div>
+              <FeatureCard
+                icon="fas fa-video"
+                title="Save Movies to Your Watchlist"
+                description="Keep track of your favorite films with ease. 🎥" />
             </Link>
             
             <Link to="/movies">
-              <div className="feature-item">
-                <i className="fas fa-search"></i>
-                <h3>Search & Filters</h3>
-                <p>Find movies by title or apply filters like genre, rating, or release year 🔍</p>
-              </div>
+              <FeatureCard
+                icon="fas fa-search"
+                title="Search & Filters"
+                description="Find movies by title or apply filters like genre, rating, or release year 🔍" />
             </Link>
 
             <Link to="/movies">
-              <div className="feature-item">
-                <i className="fas fa-sort"></i>
-                <h3>Sort Movies</h3>
-                <p>
-                  Organize movies by popularity, rating, release date, revenue or title 📊
-                </p>
-              </div>
+              <FeatureCard
+                icon="fas fa-sort"
+                title="Sort Movies"
+                description="Organize movies by popularity, rating, release date, revenue or title 📊" />
             </Link>
             
             <Link to="/mood">
-              <div className="feature-item">
-                <i className="fas fa-smile"></i> 
-                <h3>Mood-Based Recommendations</h3>
-                <p>Get personalized suggestions based on your mood. 😎</p>
-              </div>
+              <FeatureCard
+                icon="fas fa-smile"
+                title="Mood-Based Recommendations"
+                description="Get personalized suggestions based on your mood. 😎" />
             </Link>
             
             <Link to="/map">
-              <div className="feature-item">
-                <i className="fas fa-map-marker-alt"></i>
-                <h3>Explore Cinemas by Country</h3>
-                <p>Discover movies from all over the world. 🌍</p>
-              </div>
+              <FeatureCard
+                icon="fas fa-map-marker-alt"
+                title="Explore Cinemas by Country"
+                description="Discover movies from all over the world. 🌍" />
             </Link>
             
             <Link to="/">
-              <div className="feature-item">
-                <i className="fas fa-film"></i>
-                <h3>Watch Trailers</h3>
-                <p>Watch movie trailers before making your choice! 🎬</p>
-              </div>
+              <FeatureCard
+                icon="fas fa-film"
+                title="Watch Trailers"
+                description="Watch movie trailers before making your choice! 🎬" />
             </Link>
-          </div>
+          </FeaturesList>
           <p className="pt-3 fw-bold fst-italic">
             "Every line of code is an opportunity to transform ideas into experiences that make a difference."
           </p>
@@ -82,17 +78,20 @@ function AboutUsInfo() {
             Our mission is to make exploring cinema as exciting as watching it. 🩵
           </p>
           <div className="social-links d-flex gap-4">
-            <a href="https://www.facebook.com/IronhackSpain/?locale=es_ES" className="social-icon">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/ironhackspain/" className="social-icon">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="https://x.com/ironhackspain" className="social-icon">
-              <i className="fab fa-twitter"></i>
-            </a>
+            <SocialNetwork 
+              link="https://www.facebook.com/IronhackSpain/?locale=es_ES"
+              name="facebook-f"
+            />
+            <SocialNetwork 
+              link="https://www.instagram.com/ironhackspain/"
+              name="instagram"
+            />
+            <SocialNetwork 
+              link="https://x.com/ironhackspain"
+              name="twitter"
+            />
           </div>
-        </div>        
+        </PageContainer>      
       </div>
     </section>
   );
