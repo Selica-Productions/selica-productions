@@ -1,8 +1,8 @@
 // --Max Pages --
-export const maxPages = 500;
+const maxPages = 500;
 
 // -- Year Options --
-export const YEARS = [
+const YEARS = [
     2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015,
     2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005,
     2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995,
@@ -10,7 +10,7 @@ export const YEARS = [
 ];
 
 // --Genre Options--
-export const GENRES = [
+const GENRES = [
     { id: 28, label: "Action" },
     { id: 12, label: "Adventure" },
     { id: 16, label: "Animation" },
@@ -33,7 +33,7 @@ export const GENRES = [
 ];
 
 //-- Sort options --
-export const sortOptions = [
+const sortOptions = [
     { value: "popularity.desc", label: "Popularity (descending)" },
     { value: "popularity.asc", label: "Popularity (ascending)" },
     { value: "vote_average.desc", label: "Rating (high to low)" },
@@ -46,8 +46,16 @@ export const sortOptions = [
 ];
 
 //-- Get poster path (if no poster available, set noPosterAvailable.webp)--
-export const getPosterSrc = ( posterPath ) => {
+const getPosterSrc = ( posterPath ) => {
     return posterPath 
         ? `https://image.tmdb.org/t/p/w500${ posterPath }` 
         : "/src/assets/images/noPosterAvailable.webp";
 };
+
+export {
+    maxPages,
+    YEARS,
+    GENRES,
+    sortOptions,
+    getPosterSrc
+  };

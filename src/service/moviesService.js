@@ -2,7 +2,7 @@ import api from "./api";
 
 //--API CALLS--
 //--Get Popular Movies--
-export const getPopularMovies = async () => {
+const getPopularMovies = async () => {
   try {
     const response = await api.get("/movie/popular");
     return response.data.results;
@@ -15,7 +15,7 @@ export const getPopularMovies = async () => {
 };
 
 //--Get Film Details --
-export const getFilmDetails = async (id) => {
+const getFilmDetails = async (id) => {
   try {
     const response = await api.get(`/movie/${id}`);
     return response.data;
@@ -28,7 +28,7 @@ export const getFilmDetails = async (id) => {
 };
 
 //--Load more pages (Popular Films)--
-export const loadPopularFilmPages = async (page) => {
+const loadPopularFilmPages = async (page) => {
   try {
     const response = await api.get(`/movie/popular?page=${page}`);
     return response.data.results;
@@ -41,7 +41,7 @@ export const loadPopularFilmPages = async (page) => {
 };
 
 //--Load more pages--
-export const loadCountryFilmPages = async (page) => {
+const loadCountryFilmPages = async (page) => {
   try {
     const response = await api.get(`/movie/popular?page=${page}`);
     return response.data.results;
@@ -54,7 +54,7 @@ export const loadCountryFilmPages = async (page) => {
 };
 
 //--Get Movies by Genre--
-export const getMoviesByGenre = async (genreId) => {
+const getMoviesByGenre = async (genreId) => {
   try {
     const response = await api.get("/discover/movie", {
       params: {
@@ -71,7 +71,7 @@ export const getMoviesByGenre = async (genreId) => {
 };
 
 //--Get Movies by Year--
-export const getMoviesByYear = async (year) => {
+const getMoviesByYear = async (year) => {
   try {
     const response = await api.get("/discover/movie", {
       params: {
@@ -88,7 +88,7 @@ export const getMoviesByYear = async (year) => {
 };
 
 //--Get Top Rated Movies--
-export const getTopRatedMovies = async () => {
+const getTopRatedMovies = async () => {
   try {
     const response = await api.get("/movie/top_rated");
     return response.data.results.map((movie) => ({
@@ -104,7 +104,7 @@ export const getTopRatedMovies = async () => {
 };
 
 //--Get Upcoming Movies--
-export const getUpcomingMovies = async (page) => {
+const getUpcomingMovies = async (page) => {
   try {
     const response = await api.get(`/movie/upcoming?page=${page}`);
     return response.data.results.slice(0, 10);
@@ -117,7 +117,7 @@ export const getUpcomingMovies = async (page) => {
 };
 
 //--Get Movies from Countries--
-export const getCountryMovies = async (country, page) => {
+const getCountryMovies = async (country, page) => {
   try {
     const response = await api.get(
       `/discover/movie?page=${page}&sort_by=popularity.desc&with_origin_country=${country}`
@@ -135,7 +135,7 @@ export const getCountryMovies = async (country, page) => {
 };
 
 //--Get Trending TV Shows--
-export const getTrendingTVShows = async () => {
+const getTrendingTVShows = async () => {
   try {
     const response = await api.get("/discover/tv", {
       params: {
@@ -156,7 +156,7 @@ export const getTrendingTVShows = async () => {
 };
 
 //--Get TV Show Details--
-export const getTVShowDetails = async (id) => {
+const getTVShowDetails = async (id) => {
   try {
     const response = await api.get(`/tv/${id}`, {
       params: {
@@ -173,7 +173,7 @@ export const getTVShowDetails = async (id) => {
 };
 
 //--Get Sorted Movies--
-export const getSortedMovies = async (sortOption, genre=null, year=null) => {
+const getSortedMovies = async (sortOption, genre=null, year=null) => {
   try {
     let url = `/discover/movie?sort_by=${sortOption.value}`;
 
@@ -198,7 +198,7 @@ export const getSortedMovies = async (sortOption, genre=null, year=null) => {
 
 
 //--Get Trailer Movies--
-export const getTrailerMovies = async ( type, id ) => {
+const getTrailerMovies = async ( type, id ) => {
   try {
     const response = await api.get(`/${ type }/${ id }/videos`);
     return response.data.results;
@@ -210,3 +210,18 @@ export const getTrailerMovies = async ( type, id ) => {
   }
 };
 
+export {
+  getPopularMovies,
+  getFilmDetails,
+  loadPopularFilmPages,
+  loadCountryFilmPages,
+  getMoviesByGenre,
+  getMoviesByYear,
+  getTopRatedMovies,
+  getUpcomingMovies,
+  getCountryMovies,
+  getTrendingTVShows,
+  getTVShowDetails,
+  getSortedMovies,
+  getTrailerMovies
+};
